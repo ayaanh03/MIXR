@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     )
     
     lazy var sessionManager: SPTSessionManager = {
-        if let tokenSwapURL = URL(string: "https://[your token swap app domain here]/api/token"),
-           let tokenRefreshURL = URL(string: "https://[your token swap app domain here]/api/refresh_token") {
+        if let tokenSwapURL = URL(string: "https://localhost:8000/api/token"),
+           let tokenRefreshURL = URL(string: "https://localhost:8000/api/refresh_token") {
             self.configuration.tokenSwapURL = tokenSwapURL
             self.configuration.tokenRefreshURL = tokenRefreshURL
+            //will play last played song on spotify
             self.configuration.playURI = ""
         }
         let manager = SPTSessionManager(configuration: self.configuration, delegate: self)

@@ -14,7 +14,9 @@
 		</dict>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
-	<string>spotify</string>
+	<array>
+		<string>spotify</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
