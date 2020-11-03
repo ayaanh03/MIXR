@@ -7,16 +7,22 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var mixTextField: UITextField!
     
 
+    var refUsers: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        refUsers = Database.database().reference().child("users")
     }
+    
     
     @IBAction func loginButtonTapped() {
         debugPrint("loginButton tapped")
@@ -34,7 +40,17 @@ class ViewController: UIViewController {
         
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { result, error in
             guard error == nil else {
-                debugPrint("login failed")
+                if let errCode = AuthErrorCode(rawValue: error!._code) {
+
+                    switch errCode {
+                        case .invalidEmail:
+                            debugPrint("invalid email")
+                        case .wrongPassword:
+                            debugPrint("Wrong password")
+                        default:
+                            debugPrint("Create User Error: \(error!)")
+                    }
+                }
                 return
             }
             
@@ -59,13 +75,39 @@ class ViewController: UIViewController {
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { result, error in
             guard error == nil else {
-                debugPrint("sign up failed")
+                if let errCode = AuthErrorCode(rawValue: error!._code) {
+
+                    switch errCode {
+                        case .invalidEmail:
+                            debugPrint("invalid email")
+                        case .emailAlreadyInUse:
+                            debugPrint("in use")
+                        case .weakPassword:
+                            debugPrint("The password must be 6 characters long or more")
+                        default:
+                            debugPrint("Create User Error: \(error!)")
+                    }
+                }
                 return
             }
             
             debugPrint("sign up success")
+            self.addNewUser(email: email)
             return
         })
+        
+    }
+    
+    func addNewUser(email: String) {
+//        let user = ["id": email, "rooms": [String]()] as [String : Any]
+//        refUsers.child(email).setValue(user)
+    }
+    
+    @IBAction func createButtonTapped() {
+
+    }
+
+    @IBAction func joinButtonTapped() {
         
     }
 
