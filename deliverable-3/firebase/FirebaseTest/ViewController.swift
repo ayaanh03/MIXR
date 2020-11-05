@@ -90,17 +90,43 @@ class ViewController: UIViewController {
                 }
                 return
             }
-            
+            var user = Auth.auth().currentUser;
+            debugPrint(user!.uid)
+            debugPrint(user!.email)
             debugPrint("sign up success")
-            self.addNewUser(email: email)
+            self.addNewUser(uid: user!.uid, email: user!.email!)
             return
         })
         
     }
     
-    func addNewUser(email: String) {
-//        let user = ["id": email, "rooms": [String]()] as [String : Any]
-//        refUsers.child(email).setValue(user)
+    func addNewUser(uid: String, email: String) {
+        
+        // let key = refUsers.childByAutoId().key
+        
+        let user = ["id": uid, "email": email, "rooms": ["temp"]] as [String : Any]
+        refUsers.child(uid).setValue(user)
+        
+        // read data from firebase
+        refUsers.child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            debugPrint(value!)
+            debugPrint(value!["id"]!)
+            debugPrint(value!["rooms"]!)
+            
+            // update entry
+            var newRoom: [String] = value!["rooms"]! as? Array<String> ?? []
+            newRoom.append("a")
+            debugPrint(newRoom)
+
+            let updatedUser = ["id": value!["id"]!, "email": value!["email"]!, "rooms": newRoom]
+            self.refUsers.child(uid).updateChildValues(updatedUser)
+            
+        }) {(error) in
+            debugPrint(error.localizedDescription)
+        }
+        
+
     }
     
     @IBAction func createButtonTapped() {
