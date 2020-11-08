@@ -6,30 +6,48 @@
 //
 
 import Foundation
-import Firebase
 
 class UserModel {
-    private var email: String
-    private var uid: String
-    private var rooms: [String]
+    var email: String
+    var uid: String
+    var password: String
+    var rooms: [RoomModel]
     
-    var refUsers: DatabaseReference!
     
-    init(userId: String, emailInput: String) {
-        uid = userId
-        email = emailInput
-        rooms = ["temp"]
-        refUsers = Database.database().reference().child("users")
+    
+    init() {
+        uid = ""
+        email = ""
+        password = ""
+        rooms = []
     }
     
-    func saveToDB() {
-        let userToSave = ["uid": uid, "email": email, "rooms": rooms] as [String : Any]
-        refUsers.child(uid).setValue(userToSave)
+    func isInRoom(roomID: String) -> Bool {
+        for r in rooms {
+            if (r.id == roomID) {
+                return true
+            }
+        }
+        return false
     }
     
-//    func joinNewRoom(roomId: String) {
-//
-//    }
+    func joinNewRoom(newRoom: RoomModel) -> Bool {
+        if (isInRoom(roomID: newRoom.id)) {
+            return false
+        }
+        rooms.append(newRoom)
+        return true
+    }
+    
+    func quitRoom(roomId: String) -> Bool {
+        if (!isInRoom(roomID: roomId)) {
+            return false
+        }
+        rooms = rooms.filter( {$0.id != roomId} )
+        return true
+    }
+    
+
     
     
 }

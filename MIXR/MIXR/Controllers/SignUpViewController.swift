@@ -16,9 +16,17 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passConfirmTextField: UITextField!
     
     
+    let DEFAULT_ROOMS: [String] = ["temp"]
+    var refUsers: DatabaseReference!
+    var user = UserModel()
+    var text: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        refUsers = Database.database().reference().child("users")
+        debugPrint("Test for push " + text)
     }
     
     /**
@@ -62,12 +70,31 @@ class SignUpViewController: UIViewController {
             }
             let userCurr = Auth.auth().currentUser;
             
-            let newUser = UserModel(userId: userCurr!.uid, emailInput: userCurr!.email!)
-            newUser.saveToDB()
+            self.saveToDB(uid: userCurr!.uid, email: userCurr!.email!)
             debugPrint("sign up success")
+            
+            self.user.uid = userCurr!.uid
+            self.user.email = userCurr!.email!
+            self.user.password = password            
+            // debugPrint(self.user.uid)
             return
         })
     }
+    
+    func saveToDB(uid: String, email: String) {
+        let user = ["id": uid, "email": email, "rooms": self.DEFAULT_ROOMS] as [String : Any]
+        refUsers.child(uid).setValue(user)
+    }
+    /**
+        Pass user to next ViewController
+     */
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "signUpClick" {
+    //            let vc = segue.destination as! SignUpViewController
+    //            vc.text = self.user.email
+    //        }
+    //
+    //    }
     
 
 }

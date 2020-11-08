@@ -16,10 +16,14 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    var refUsers: DatabaseReference!
+    var user = UserModel()
+    // var uid = "eKgDWI1jyYPblTzzms88qym5KOI3"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        refUsers = Database.database().reference().child("users")
     }
     
     /**
@@ -54,16 +58,40 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            let userCurr = Auth.auth().currentUser!;
+            self.getUserFromDB(uid: userCurr.uid)
+            debugPrint(self.user.uid)
             debugPrint("login success")
+            
             return
         })
     }
     
-    @IBAction func signupTapped(_ sender: Any) {
-        
+    func getUserFromDB(uid: String) {
+        refUsers.child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.user.uid = value!["id"]! as! String
+            self.user.email = value!["email"]! as! String
+            // self.user.rooms = value!["rooms"]! as! [RoomModel]
+        }) {(error) in
+            debugPrint(error.localizedDescription)
+            return
+        }
     }
     
-        
+    @IBAction func signupTapped(_ sender: Any) {
+    }
+    
+    /**
+        Pass user to next ViewController
+     */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "signUpClick" {
+//            let vc = segue.destination as! SignUpViewController
+//            vc.text = self.user.email
+//        }
+//
+//    }
         
     
 }
