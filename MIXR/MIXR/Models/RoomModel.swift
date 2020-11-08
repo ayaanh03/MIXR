@@ -53,6 +53,7 @@ class RoomModel {
     }
     
     // input format: 09:41: 9 h and 41 min
+    // Should be a private method, not to be called by controller
     func convertStringToTimeInterval(time: String) -> TimeInterval {
         if (time == "") {
             return -1
@@ -82,6 +83,7 @@ class RoomModel {
         return numSongsLimit
     }
     
+    // Should be a private method, not to be called by controller
     func isUserInRoom(userId: String) -> Bool {
         for user in users {
             if (user.uid == userId) {
@@ -112,6 +114,7 @@ class RoomModel {
         return true
     }
     
+    // Should be a private method, not to be called by controller
     func isInPlaylist(songId: String) -> Bool {
         for s in songs {
             if (s.spofityID == songId) {

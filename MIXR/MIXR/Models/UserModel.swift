@@ -22,6 +22,7 @@ class UserModel {
         rooms = []
     }
     
+    // Should be a private method, not to be called by controller
     func isInRoom(roomID: String) -> Bool {
         for r in rooms {
             if (r.id == roomID) {
@@ -46,8 +47,4 @@ class UserModel {
         rooms = rooms.filter( {$0.id != roomId} )
         return true
     }
-    
-
-    
-    
 }
