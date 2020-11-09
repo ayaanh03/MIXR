@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passConfirmTextField: UITextField!
     
     
-    let DEFAULT_ROOMS: [String] = ["temp"]
+    let DEFAULT_ROOMS: Dictionary<String, String> = ["id": "_", "name": "_"]
     var refUsers: DatabaseReference!
     var user = UserModel()
     var text: String = ""

@@ -9,4 +9,5 @@ target 'FirebaseTest' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'CryptoSwift', '~> 1.0'
 end

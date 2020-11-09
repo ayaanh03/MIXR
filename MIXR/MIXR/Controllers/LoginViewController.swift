@@ -72,6 +72,7 @@ class LoginViewController: UIViewController {
             let value = snapshot.value as? NSDictionary
             self.user.uid = value!["id"]! as! String
             self.user.email = value!["email"]! as! String
+            debugPrint(value!["rooms"]! as! Dictionary<String, String>)
             // self.user.rooms = value!["rooms"]! as! [RoomModel]
         }) {(error) in
             debugPrint(error.localizedDescription)
