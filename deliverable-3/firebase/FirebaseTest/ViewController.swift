@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+// import CryptoSwift
 
 class ViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,6 +22,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         refUsers = Database.database().reference().child("users")
+//        do {
+//            let aes = try AES(key: "keykeykeykeykeyk", iv: "drowssapdrowssap") // aes128
+//            debugPrint(aes)
+//            let ciphertext = try aes.encrypt(Array("Nullam quis risus eget urna mollis ornare vel eu leo.".utf8))
+//            debugPrint(ciphertext)
+//        } catch { }
     }
     
     
@@ -37,6 +44,8 @@ class ViewController: UIViewController {
 //            present(alert, animated: true)
             debugPrint("empty fields")
         }
+        
+
         
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { result, error in
             guard error == nil else {

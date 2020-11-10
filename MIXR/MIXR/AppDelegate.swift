@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
         // Override point for customization after application launch.
         let requestedScopes: SPTScope = [.appRemoteControl]
         self.sessionManager.initiateSession(with: requestedScopes, options: .default)
-//        FirebaseApp.configure()
+        FirebaseApp.configure()
         return true
     }
     

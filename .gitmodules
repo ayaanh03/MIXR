@@ -1,0 +1,3 @@
+[submodule "deliverable-3/firebase/CryptoSwift"]
+	path = deliverable-3/firebase/CryptoSwift
+	url = https://github.com/krzyzanowskim/CryptoSwift.git

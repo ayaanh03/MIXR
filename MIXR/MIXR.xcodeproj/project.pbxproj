@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
+		5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
+		5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
+		5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
+		5FB4C392255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
+		5FB4C393255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
+		5FB4C3B32556599E009C81B9 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B22556599E009C81B9 /* RoomModel.swift */; };
+		5FB4C3B42556599E009C81B9 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B22556599E009C81B9 /* RoomModel.swift */; };
+		5FB4C3B52556599E009C81B9 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B22556599E009C81B9 /* RoomModel.swift */; };
+		5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B925578AEC009C81B9 /* SongModel.swift */; };
+		5FB4C3BB25578AEC009C81B9 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B925578AEC009C81B9 /* SongModel.swift */; };
+		5FB4C3BC25578AED009C81B9 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3B925578AEC009C81B9 /* SongModel.swift */; };
+		5FB4C3D325579536009C81B9 /* UserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D225579536009C81B9 /* UserModelTests.swift */; };
+		5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */; };
+		5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */; };
 		99B8C410877C387D4E796217 /* Pods_MIXR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19A7AB2AF493CB39036E5AD /* Pods_MIXR.framework */; };
 		9FF901952555887D005121B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901942555887D005121B9 /* AppDelegate.swift */; };
 		9FF901972555887D005121B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901962555887D005121B9 /* SceneDelegate.swift */; };
@@ -43,6 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FB4C390255642C4009C81B9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		5FB4C3B22556599E009C81B9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		5FB4C3B925578AEC009C81B9 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
+		5FB4C3D225579536009C81B9 /* UserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelTests.swift; sourceTree = "<group>"; };
+		5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModelTests.swift; sourceTree = "<group>"; };
+		5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModelTests.swift; sourceTree = "<group>"; };
 		9FF901912555887D005121B9 /* MIXR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIXR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF901942555887D005121B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF901962555887D005121B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5FB4C38F255642A7009C81B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FB4C390255642C4009C81B9 /* UserModel.swift */,
+				5FB4C3B22556599E009C81B9 /* RoomModel.swift */,
+				5FB4C3B925578AEC009C81B9 /* SongModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9FF901882555887D005121B9 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +154,8 @@
 		9FF901932555887D005121B9 /* MIXR */ = {
 			isa = PBXGroup;
 			children = (
+				5FB4C38F255642A7009C81B9 /* Models */,
+				5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */,
 				9FF901E725558CCA005121B9 /* SpotifyiOS.framework */,
 				9FF901942555887D005121B9 /* AppDelegate.swift */,
 				9FF901962555887D005121B9 /* SceneDelegate.swift */,
@@ -141,6 +175,9 @@
 			children = (
 				9FF901AE25558881005121B9 /* MIXRTests.swift */,
 				9FF901B025558881005121B9 /* Info.plist */,
+				5FB4C3D225579536009C81B9 /* UserModelTests.swift */,
+				5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */,
+				5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */,
 			);
 			path = MIXRTests;
 			sourceTree = "<group>";
@@ -290,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF901A425558881005121B9 /* LaunchScreen.storyboard in Resources */,
+				5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
 				9FF901A125558881005121B9 /* Assets.xcassets in Resources */,
 				9FF9019C2555887D005121B9 /* Main.storyboard in Resources */,
 			);
@@ -299,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,9 +403,12 @@
 				9FF901ED25558F50005121B9 /* LoginViewController.swift in Sources */,
 				9FF901FE25559679005121B9 /* HostViewController.swift in Sources */,
 				9FF901992555887D005121B9 /* HomeViewController.swift in Sources */,
+				5FB4C3B32556599E009C81B9 /* RoomModel.swift in Sources */,
+				5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */,
 				9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */,
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,
 				9FF901952555887D005121B9 /* AppDelegate.swift in Sources */,
+				5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */,
 				9FF901972555887D005121B9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +417,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB4C392255642C4009C81B9 /* UserModel.swift in Sources */,
 				9FF901AF25558881005121B9 /* MIXRTests.swift in Sources */,
+				5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */,
+				5FB4C3BB25578AEC009C81B9 /* SongModel.swift in Sources */,
+				5FB4C3D325579536009C81B9 /* UserModelTests.swift in Sources */,
+				5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */,
+				5FB4C3B42556599E009C81B9 /* RoomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +431,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB4C393255642C4009C81B9 /* UserModel.swift in Sources */,
 				9FF901BA25558881005121B9 /* MIXRUITests.swift in Sources */,
+				5FB4C3BC25578AED009C81B9 /* SongModel.swift in Sources */,
+				5FB4C3B52556599E009C81B9 /* RoomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
