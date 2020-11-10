@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
+		5F65A9F8255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
+		5F65A9FC255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
 		5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
 		5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
@@ -22,6 +25,7 @@
 		5FB4C3D325579536009C81B9 /* UserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D225579536009C81B9 /* UserModelTests.swift */; };
 		5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */; };
 		5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */; };
+		5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
 		99B8C410877C387D4E796217 /* Pods_MIXR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19A7AB2AF493CB39036E5AD /* Pods_MIXR.framework */; };
 		9FF901952555887D005121B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901942555887D005121B9 /* AppDelegate.swift */; };
 		9FF901972555887D005121B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901962555887D005121B9 /* SceneDelegate.swift */; };
@@ -58,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceHelper.swift; sourceTree = "<group>"; };
 		5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5FB4C390255642C4009C81B9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5FB4C3B22556599E009C81B9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
@@ -119,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F65A9E2255B36FC00CD275B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		5FB4C38F255642A7009C81B9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +167,7 @@
 		9FF901932555887D005121B9 /* MIXR */ = {
 			isa = PBXGroup;
 			children = (
+				5F65A9E2255B36FC00CD275B /* Helper */,
 				5FB4C38F255642A7009C81B9 /* Models */,
 				5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */,
 				9FF901E725558CCA005121B9 /* SpotifyiOS.framework */,
@@ -405,6 +419,7 @@
 				9FF901992555887D005121B9 /* HomeViewController.swift in Sources */,
 				5FB4C3B32556599E009C81B9 /* RoomModel.swift in Sources */,
 				5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */,
+				5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */,
 				9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */,
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,
 				9FF901952555887D005121B9 /* AppDelegate.swift in Sources */,
@@ -420,9 +435,11 @@
 				5FB4C392255642C4009C81B9 /* UserModel.swift in Sources */,
 				9FF901AF25558881005121B9 /* MIXRTests.swift in Sources */,
 				5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */,
+				5F65A9F8255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */,
 				5FB4C3BB25578AEC009C81B9 /* SongModel.swift in Sources */,
 				5FB4C3D325579536009C81B9 /* UserModelTests.swift in Sources */,
 				5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */,
+				5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */,
 				5FB4C3B42556599E009C81B9 /* RoomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F65A9FC255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */,
 				5FB4C393255642C4009C81B9 /* UserModel.swift in Sources */,
 				9FF901BA25558881005121B9 /* MIXRUITests.swift in Sources */,
 				5FB4C3BC25578AED009C81B9 /* SongModel.swift in Sources */,
