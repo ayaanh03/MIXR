@@ -82,16 +82,16 @@ class SignUpViewController: UIViewController {
     }
     
     func saveToDB(uid: String, email: String) {
-        let user = ["id": uid, "email": email, "rooms": self.DEFAULT_ROOMS] as [String : Any]
+        let user = ["id": uid, "email": email, "rooms": [DEFAULT_ROOMS]] as [String : Any]
         refUsers.child(uid).setValue(user)
     }
     /**
-        Pass user to next ViewController
+        Pass user.uid to next ViewController
      */
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //        if segue.identifier == "signUpClick" {
     //            let vc = segue.destination as! SignUpViewController
-    //            vc.text = self.user.email
+    //            vc.text = self.user.uid
     //        }
     //
     //    }

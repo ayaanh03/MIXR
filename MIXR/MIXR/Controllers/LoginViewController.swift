@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
     
     var refUsers: DatabaseReference!
     var user = UserModel()
-    // var uid = "eKgDWI1jyYPblTzzms88qym5KOI3"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +58,21 @@ class LoginViewController: UIViewController {
             }
             
             let userCurr = Auth.auth().currentUser!;
-            self.getUserFromDB(uid: userCurr.uid)
+            self.user.uid = userCurr.uid
+            /**
+                Just testing DatabaseServiceHelper's functionality
+                Functionality works fine!
+             */
+//            let dbService = DatabaseServiceHelper()
+//            dbService.getUserFromDB(uid: userCurr.uid) { (u) in
+//                debugPrint(u.uid)
+//                debugPrint(u.email)
+//                debugPrint(u.rooms[0].id)
+//                debugPrint(u.rooms[0].name)
+//                debugPrint(u.rooms[1].id)
+//                debugPrint(u.rooms[1].name)
+//                debugPrint(u.rooms.count)
+//            }
             debugPrint(self.user.uid)
             debugPrint("login success")
             
@@ -67,29 +80,16 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func getUserFromDB(uid: String) {
-        refUsers.child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
-            let value = snapshot.value as? NSDictionary
-            self.user.uid = value!["id"]! as! String
-            self.user.email = value!["email"]! as! String
-            debugPrint(value!["rooms"]! as! Dictionary<String, String>)
-            // self.user.rooms = value!["rooms"]! as! [RoomModel]
-        }) {(error) in
-            debugPrint(error.localizedDescription)
-            return
-        }
-    }
-    
     @IBAction func signupTapped(_ sender: Any) {
     }
     
     /**
-        Pass user to next ViewController
+            Pass user.uid to next viewController
      */
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "signUpClick" {
 //            let vc = segue.destination as! SignUpViewController
-//            vc.text = self.user.email
+//            vc.text = self.user.uid
 //        }
 //
 //    }
