@@ -1,5 +1,5 @@
 //
-//  MixViewController.swift
+//  MixHostViewController.swift
 //  MIXR
 //
 //  Created by Christopher Haas on 11/6/20.
@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class MixViewController: UIViewController {
+class MixHostViewController: UIViewController {
     
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class MixViewController: UIViewController {
             "Authorization": "Bearer " + appDelegate.accessToken
         ]
 
-        AF.request("https://api.spotify.com/v1/playlists/5tgEw5cJutXuUc0vcEJntw", headers: headers).responseJSON { response in
+        AF.request("https://api.spotify.com/v1/tracks/2cmRpmO04TLaKPzmAzySYZ", headers: headers).responseJSON { response in
             debugPrint(response)
         }
           

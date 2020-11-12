@@ -13,6 +13,7 @@ class JoinViewController: UIViewController {
     @IBOutlet weak var codeTextField: UITextField!
     
     override func viewDidLoad() {
+        self.setupToHideKeyboardOnTapOnView()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }

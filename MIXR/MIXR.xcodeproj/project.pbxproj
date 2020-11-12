@@ -27,6 +27,10 @@
 		5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */; };
 		5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */; };
 		5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
+		9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */; };
+		9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */; };
+		9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */; };
+		9F33CE81255DCEC2005F8C19 /* MixJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CDD4255DA7E1005F8C19 /* MixJoinViewController.swift */; };
 		9F7B1EB3255CA7600017A034 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */; };
 		9FF901952555887D005121B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901942555887D005121B9 /* AppDelegate.swift */; };
 		9FF901992555887D005121B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901982555887D005121B9 /* HomeViewController.swift */; };
@@ -40,7 +44,7 @@
 		9FF901F9255595C9005121B9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901F8255595C9005121B9 /* SignUpViewController.swift */; };
 		9FF901FE25559679005121B9 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901FD25559679005121B9 /* HostViewController.swift */; };
 		9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF90202255596A9005121B9 /* JoinViewController.swift */; };
-		9FF90205255596A9005121B9 /* MixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF90203255596A9005121B9 /* MixViewController.swift */; };
+		9FF90205255596A9005121B9 /* MixHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF90203255596A9005121B9 /* MixHostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,10 @@
 		5FB4C3D225579536009C81B9 /* UserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModelTests.swift; sourceTree = "<group>"; };
+		9F33CDD4255DA7E1005F8C19 /* MixJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixJoinViewController.swift; sourceTree = "<group>"; };
+		9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDifference.swift; sourceTree = "<group>"; };
+		9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTapOutKeyboard.swift; sourceTree = "<group>"; };
+		9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyCodables.swift; sourceTree = "<group>"; };
 		9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		9FF901912555887D005121B9 /* MIXR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIXR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF901942555887D005121B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +97,7 @@
 		9FF901F8255595C9005121B9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9FF901FD25559679005121B9 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		9FF90202255596A9005121B9 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
-		9FF90203255596A9005121B9 /* MixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
+		9FF90203255596A9005121B9 /* MixHostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixHostViewController.swift; sourceTree = "<group>"; };
 		C8D071232F38A0640676EAFF /* Pods-MIXR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIXR.release.xcconfig"; path = "Target Support Files/Pods-MIXR/Pods-MIXR.release.xcconfig"; sourceTree = "<group>"; };
 		D9A41003C0CD16055662BA54 /* Pods-MIXR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIXR.debug.xcconfig"; path = "Target Support Files/Pods-MIXR/Pods-MIXR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +147,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9F33CE07255DBF41005F8C19 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */,
+				9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9F33CE15255DC347005F8C19 /* Codables */ = {
+			isa = PBXGroup;
+			children = (
+				9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */,
+			);
+			path = Codables;
+			sourceTree = "<group>";
+		};
 		9FF901882555887D005121B9 = {
 			isa = PBXGroup;
 			children = (
@@ -166,8 +191,10 @@
 			children = (
 				5F65A9E2255B36FC00CD275B /* Helper */,
 				5FB4C38F255642A7009C81B9 /* Models */,
+				9F33CE15255DC347005F8C19 /* Codables */,
 				5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */,
 				9FF901942555887D005121B9 /* AppDelegate.swift */,
+				9F33CE07255DBF41005F8C19 /* Extensions */,
 				9FF901F425558F60005121B9 /* Controllers */,
 				9FF9019A2555887D005121B9 /* Main.storyboard */,
 				9FF901A025558881005121B9 /* Assets.xcassets */,
@@ -205,7 +232,8 @@
 				9FF901982555887D005121B9 /* HomeViewController.swift */,
 				9FF901EC25558F50005121B9 /* LoginViewController.swift */,
 				9FF90202255596A9005121B9 /* JoinViewController.swift */,
-				9FF90203255596A9005121B9 /* MixViewController.swift */,
+				9FF90203255596A9005121B9 /* MixHostViewController.swift */,
+				9F33CDD4255DA7E1005F8C19 /* MixJoinViewController.swift */,
 				9FF901FD25559679005121B9 /* HostViewController.swift */,
 				9FF901F8255595C9005121B9 /* SignUpViewController.swift */,
 			);
@@ -407,8 +435,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FF90205255596A9005121B9 /* MixViewController.swift in Sources */,
+				9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */,
+				9FF90205255596A9005121B9 /* MixHostViewController.swift in Sources */,
 				9FF901F9255595C9005121B9 /* SignUpViewController.swift in Sources */,
+				9F33CE81255DCEC2005F8C19 /* MixJoinViewController.swift in Sources */,
 				9FF901ED25558F50005121B9 /* LoginViewController.swift in Sources */,
 				9FF901FE25559679005121B9 /* HostViewController.swift in Sources */,
 				9FF901992555887D005121B9 /* HomeViewController.swift in Sources */,
@@ -416,9 +446,11 @@
 				5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */,
 				5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */,
 				9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */,
+				9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */,
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,
 				9FF901952555887D005121B9 /* AppDelegate.swift in Sources */,
 				5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */,
+				9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

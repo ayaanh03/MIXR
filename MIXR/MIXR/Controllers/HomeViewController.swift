@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         appRemote.authorizeAndPlayURI("")
 //        appRemote.playerAPI?.pause()
         print(appDelegate.accessToken)
+        
        
         
 //         Want to play a new track?

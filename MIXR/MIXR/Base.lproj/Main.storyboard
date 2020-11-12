@@ -301,9 +301,6 @@
                                 <state key="normal" title="Start Room">
                                     <color key="titleColor" systemColor="systemGreenColor"/>
                                 </state>
-                                <connections>
-                                    <segue destination="lBb-Gl-I4o" kind="show" id="qEI-rj-x7x"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="off-YF-W0T"/>
@@ -383,10 +380,10 @@
             </objects>
             <point key="canvasLocation" x="-71.014492753623188" y="2183.7053571428569"/>
         </scene>
-        <!--Mix View Controller-->
+        <!--Mix Host View Controller-->
         <scene sceneID="55E-9j-uux">
             <objects>
-                <viewController id="lBb-Gl-I4o" customClass="MixViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MixViewController" id="lBb-Gl-I4o" customClass="MixHostViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FF8-Dg-epB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -411,15 +408,95 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5HJ-6r-T97" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044.9275362318842" y="1459.8214285714284"/>
+            <point key="canvasLocation" x="881" y="737"/>
+        </scene>
+        <!--Mix Join View Controller-->
+        <scene sceneID="fgk-GJ-oqS">
+            <objects>
+                <viewController storyboardIdentifier="MixJoinViewController" id="Ejc-7k-cpx" customClass="MixJoinViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rNt-lV-7ja">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqR-n2-lzt">
+                                <rect key="frame" x="0.0" y="75" width="414" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="N1h-yv-Eem"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <color key="highlightedColor" systemColor="systemGreenColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHb-9u-31E">
+                                <rect key="frame" x="154" y="201" width="108" height="22"/>
+                                <state key="normal" title=" Add Song" image="memories.badge.plus" catalog="system">
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GhU-Ks-O3g">
+                                <rect key="frame" x="0.0" y="285" width="414" height="577"/>
+                                <color key="backgroundColor" red="0.1312063769" green="0.1312063769" blue="0.1312063769" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="separatorColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexColor" systemColor="systemGreenColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.12941176469999999" green="0.1312063769" blue="0.1312063769" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs in the Mix" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ve8-XP-1PJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemGreenColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" id="RLB-NM-87o">
+                                        <rect key="frame" x="0.0" y="49" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RLB-NM-87o" id="jFt-ES-w6u">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsG-Bl-CXk">
+                                <rect key="frame" x="382" y="282" width="18" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qPI-Ng-L1r"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="uqR-n2-lzt" firstAttribute="centerX" secondItem="rNt-lV-7ja" secondAttribute="centerX" id="32z-VE-eCG"/>
+                            <constraint firstItem="WHb-9u-31E" firstAttribute="leading" secondItem="qPI-Ng-L1r" secondAttribute="leading" constant="154" id="8Ku-iV-psl"/>
+                            <constraint firstItem="uqR-n2-lzt" firstAttribute="top" secondItem="qPI-Ng-L1r" secondAttribute="top" constant="31" id="B9A-5z-hTR"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GhU-Ks-O3g" secondAttribute="bottom" id="Jke-HL-GCW"/>
+                            <constraint firstItem="uqR-n2-lzt" firstAttribute="leading" secondItem="qPI-Ng-L1r" secondAttribute="leading" id="KYx-X8-jHP"/>
+                            <constraint firstItem="GhU-Ks-O3g" firstAttribute="top" secondItem="WHb-9u-31E" secondAttribute="bottom" constant="62" id="S8Y-Qs-txy"/>
+                            <constraint firstItem="uqR-n2-lzt" firstAttribute="leading" secondItem="GhU-Ks-O3g" secondAttribute="leading" id="VGg-TU-FSx"/>
+                            <constraint firstItem="WHb-9u-31E" firstAttribute="top" secondItem="uqR-n2-lzt" secondAttribute="bottom" constant="92" id="jzn-ma-n4q"/>
+                            <constraint firstItem="qPI-Ng-L1r" firstAttribute="trailing" secondItem="uqR-n2-lzt" secondAttribute="trailing" id="kza-HV-zp2"/>
+                            <constraint firstItem="uqR-n2-lzt" firstAttribute="trailing" secondItem="GhU-Ks-O3g" secondAttribute="trailing" id="liF-sR-rXC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Nuz-yn-oDa"/>
+                    <connections>
+                        <outlet property="addedSongsTableView" destination="GhU-Ks-O3g" id="Ny1-kB-iCH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vKs-Ru-EbS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879.71014492753625" y="1459.8214285714284"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="badge.plus.radiowaves.right" catalog="system" width="128" height="102"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="memories.badge.plus" catalog="system" width="128" height="104"/>
         <image name="mixrLogo" width="778" height="320"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
