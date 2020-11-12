@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.setupToHideKeyboardOnTapOnView()
         refUsers = Database.database().reference().child("users")
     }
     
@@ -76,6 +77,13 @@ class LoginViewController: UIViewController {
             debugPrint(self.user.uid)
             debugPrint("login success")
             
+            // Change Root View Controller to TabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = mainTabBarController
+            
             return
         })
     }
@@ -95,4 +103,23 @@ class LoginViewController: UIViewController {
 //    }
         
     
+}
+
+
+extension UIViewController
+{
+    func setupToHideKeyboardOnTapOnView()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
 }

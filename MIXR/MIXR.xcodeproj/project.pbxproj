@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DF1B1C05A81B456EB92B4E3 /* Pods_MIXR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C200D24520B0947BE0D248 /* Pods_MIXR.framework */; };
 		5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9F8255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9FC255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
@@ -26,9 +27,8 @@
 		5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */; };
 		5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */; };
 		5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
-		99B8C410877C387D4E796217 /* Pods_MIXR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19A7AB2AF493CB39036E5AD /* Pods_MIXR.framework */; };
+		9F7B1EB3255CA7600017A034 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */; };
 		9FF901952555887D005121B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901942555887D005121B9 /* AppDelegate.swift */; };
-		9FF901972555887D005121B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901962555887D005121B9 /* SceneDelegate.swift */; };
 		9FF901992555887D005121B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901982555887D005121B9 /* HomeViewController.swift */; };
 		9FF9019C2555887D005121B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF9019A2555887D005121B9 /* Main.storyboard */; };
 		9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FF9019D2555887D005121B9 /* MIXR.xcdatamodeld */; };
@@ -36,7 +36,6 @@
 		9FF901A425558881005121B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF901A225558881005121B9 /* LaunchScreen.storyboard */; };
 		9FF901AF25558881005121B9 /* MIXRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901AE25558881005121B9 /* MIXRTests.swift */; };
 		9FF901BA25558881005121B9 /* MIXRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901B925558881005121B9 /* MIXRUITests.swift */; };
-		9FF901E825558CCA005121B9 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF901E725558CCA005121B9 /* SpotifyiOS.framework */; };
 		9FF901ED25558F50005121B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
 		9FF901F9255595C9005121B9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901F8255595C9005121B9 /* SignUpViewController.swift */; };
 		9FF901FE25559679005121B9 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901FD25559679005121B9 /* HostViewController.swift */; };
@@ -62,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40C200D24520B0947BE0D248 /* Pods_MIXR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIXR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceHelper.swift; sourceTree = "<group>"; };
 		5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5FB4C390255642C4009C81B9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -70,9 +70,9 @@
 		5FB4C3D225579536009C81B9 /* UserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModelTests.swift; sourceTree = "<group>"; };
+		9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		9FF901912555887D005121B9 /* MIXR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIXR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF901942555887D005121B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9FF901962555887D005121B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9FF901982555887D005121B9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9FF9019B2555887D005121B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FF9019E2555887D005121B9 /* MIXR.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIXR.xcdatamodel; sourceTree = "<group>"; };
@@ -85,15 +85,12 @@
 		9FF901B525558881005121B9 /* MIXRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIXRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF901B925558881005121B9 /* MIXRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIXRUITests.swift; sourceTree = "<group>"; };
 		9FF901BB25558881005121B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FF901E325558C56005121B9 /* MIXR-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MIXR-Bridging-Header.h"; sourceTree = "<group>"; };
-		9FF901E725558CCA005121B9 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		9FF901EC25558F50005121B9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9FF901F8255595C9005121B9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9FF901FD25559679005121B9 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		9FF90202255596A9005121B9 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		9FF90203255596A9005121B9 /* MixViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
 		C8D071232F38A0640676EAFF /* Pods-MIXR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIXR.release.xcconfig"; path = "Target Support Files/Pods-MIXR/Pods-MIXR.release.xcconfig"; sourceTree = "<group>"; };
-		D19A7AB2AF493CB39036E5AD /* Pods_MIXR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIXR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A41003C0CD16055662BA54 /* Pods-MIXR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIXR.debug.xcconfig"; path = "Target Support Files/Pods-MIXR/Pods-MIXR.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99B8C410877C387D4E796217 /* Pods_MIXR.framework in Frameworks */,
-				9FF901E825558CCA005121B9 /* SpotifyiOS.framework in Frameworks */,
+				9F7B1EB3255CA7600017A034 /* SpotifyiOS.framework in Frameworks */,
+				5DF1B1C05A81B456EB92B4E3 /* Pods_MIXR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,14 +167,11 @@
 				5F65A9E2255B36FC00CD275B /* Helper */,
 				5FB4C38F255642A7009C81B9 /* Models */,
 				5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */,
-				9FF901E725558CCA005121B9 /* SpotifyiOS.framework */,
 				9FF901942555887D005121B9 /* AppDelegate.swift */,
-				9FF901962555887D005121B9 /* SceneDelegate.swift */,
 				9FF901F425558F60005121B9 /* Controllers */,
 				9FF9019A2555887D005121B9 /* Main.storyboard */,
 				9FF901A025558881005121B9 /* Assets.xcassets */,
 				9FF901A225558881005121B9 /* LaunchScreen.storyboard */,
-				9FF901E325558C56005121B9 /* MIXR-Bridging-Header.h */,
 				9FF901A525558881005121B9 /* Info.plist */,
 				9FF9019D2555887D005121B9 /* MIXR.xcdatamodeld */,
 			);
@@ -221,7 +215,8 @@
 		AED5FBDB11A2D160071022E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D19A7AB2AF493CB39036E5AD /* Pods_MIXR.framework */,
+				9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */,
+				40C200D24520B0947BE0D248 /* Pods_MIXR.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -424,7 +419,6 @@
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,
 				9FF901952555887D005121B9 /* AppDelegate.swift in Sources */,
 				5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */,
-				9FF901972555887D005121B9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,17 +612,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIXR",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MIXR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.christopherhaas.MIXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MIXR/MIXR-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MIXR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -643,17 +639,19 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIXR",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = MIXR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.christopherhaas.MIXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MIXR/MIXR-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MIXR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
