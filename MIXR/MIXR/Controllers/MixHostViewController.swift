@@ -138,7 +138,7 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func generatePlaylist(_ sender: Any) {
-        
+        pullSongs()
         getRecommendations { (recs) in
             
         
