@@ -18,15 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
     let SpotifyRedirectURL = URL(string: "MIXR://returnAfterLogin")!
     public var accessToken = ""
     
+    let scopes : SPTScope = [.playlistModifyPrivate, .appRemoteControl, .playlistModifyPublic, .playlistReadPrivate, .streaming, .userLibraryModify, .userReadPlaybackState, .userReadCurrentlyPlaying,.userTopRead]
+    
     lazy var configuration = SPTConfiguration(
       clientID: SpotifyClientID,
       redirectURL: SpotifyRedirectURL
     )
+    
 
     lazy var appRemote: SPTAppRemote = {
       let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
       appRemote.connectionParameters.accessToken = self.accessToken
       appRemote.delegate = self
+        
       return appRemote
     }()
     

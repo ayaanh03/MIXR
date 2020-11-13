@@ -139,7 +139,99 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func generatePlaylist(_ sender: Any) {
         
+        getRecommendations { (recs) in
+            
+        
+           
+            var recURIString = ""
+            recs.tracks.forEach { (track) in
+                recURIString += track.uri + ","
+            }
+            recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
+            self.getUser { (user) in
+               
+                let parameters : [String : Any] = [
+                    "name" : "MIXR ROOM \(self.roomCode)",
+                    "public" : false
+                ]
+            
+                
+                AF.request("https://api.spotify.com/v1/users/\(user.id)/playlists", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers).responseJSON { response in
+                    
+                    guard let data = response.data  else { return }
+                    guard let playlist = try? JSONDecoder().decode(Playlist.self, from: data) else {
+                      print("Error: Couldn't decode data into a result")
+                      return
+                    }
+
+                    self.addToPlaylist(uris: recURIString, playlistID: playlist.id)
+
+                   
+                }
+            }
+            
+            
+            
+        }
+        
+        
+        
     }
+    
+    func getUser(completion: @escaping (User) -> Void) {
+        
+        AF.request("https://api.spotify.com/v1/me", headers: self.headers).responseData { response in
+            
+            guard let data = response.data  else { return }
+            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
+              print("Error: Couldn't decode data into a result")
+              return
+            }
+            completion(user)
+        }
+        
+            
+        
+    }
+    
+    func getRecommendations(completion: @escaping (Tracks) -> Void) {
+        var url = "https://api.spotify.com/v1/recommendations?limit=15&seed_tracks="
+        if self.addedSongs.count == 0 { return }
+        self.addedSongs.forEach{ song in
+            url += song.id + "%2C"
+        }
+        url = String(url.dropLast(3))
+        AF.request(url, headers: self.headers).responseJSON { response in
+            guard let data = response.data  else { return }
+            guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
+              print("Error: Couldn't decode data into a result")
+              return
+            }
+            completion(tracks)
+
+        }
+       
+    }
+    
+    func addToPlaylist(uris: String, playlistID: String) {
+        AF.request("https://api.spotify.com/v1/playlists/\(playlistID)/tracks?uris=\(uris)", method: .post, headers: self.headers).validate()
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let alert = UIAlertController(title: "Playlist Has been Created", message: "View Spotify Playlist titled MIXR ROOM: \(self.roomCode)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+
+            
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddSongTableViewController {

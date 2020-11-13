@@ -38,12 +38,14 @@ struct Track: Decodable {
     let artists: [Artist]
     let name: String
     let id: String
+    let uri: String
   
   enum CodingKeys : String, CodingKey {
     case album
     case artists
     case name
     case id
+    case uri
     
   }
 }
@@ -72,4 +74,29 @@ struct Artist: Decodable {
   }
 }
 
+struct User: Decodable {
+  var id: String
+  
+  enum CodingKeys : String, CodingKey {
+    case id
+  }
+}
 
+struct Playlist: Decodable {
+  var id: String
+  
+  enum CodingKeys : String, CodingKey {
+    case id
+  }
+}
+
+
+struct playlistParams: Codable {
+    var name: String
+    var pub: Bool
+    
+    enum CodingKeys : String, CodingKey {
+        case name
+        case pub = "public"
+    }
+}

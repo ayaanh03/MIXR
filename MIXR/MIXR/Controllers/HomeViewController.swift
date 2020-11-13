@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
         print("buttonTapped")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let appRemote = appDelegate.appRemote
-        appRemote.authorizeAndPlayURI("")
+        appRemote.authorizeAndPlayURI("", asRadio: false, additionalScopes: ["playlist-modify-public", "playlist-modify-private", "user-modify-playback-state", "user-library-modify"])
 //        appRemote.playerAPI?.pause()
         print(appDelegate.accessToken)
         
