@@ -23,6 +23,7 @@ class SignUpViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        self.setupToHideKeyboardOnTapOnView()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         refUsers = Database.database().reference().child("users")
