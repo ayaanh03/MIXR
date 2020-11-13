@@ -29,8 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
       appRemote.delegate = self
       return appRemote
     }()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
            
         
@@ -40,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
 //        self.sessionManager.initiateSession(with: requestedScopes, options: .default)
         
         
-        FirebaseApp.configure()
+        
         if Auth.auth().currentUser?.uid != nil {
             self.window?.rootViewController = storyboard.instantiateViewController(identifier: "MainTabBarController")
             

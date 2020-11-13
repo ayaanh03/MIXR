@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 
 class JoinViewController: UIViewController {
-    var ref = Database.database().reference()
+    
 
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var submitCode: UIButton!
@@ -23,6 +23,7 @@ class JoinViewController: UIViewController {
     }
   
   @IBAction func pressB(sender: UIButton){
+    var ref = Database.database().reference()
     var p:NSDictionary?
     if let c = codeTextField.text {
       if c.count != 4 {
@@ -42,13 +43,18 @@ class JoinViewController: UIViewController {
             if let user = user{
               uid = user.uid
             }
-            b.append(uid)
+            if !b.contains(uid) {
+                b.append(uid)
+                
+                ref.child("rooms/\(c)/users").setValue(b)
+            }
             print(b)
-            self.ref.child("rooms/\(c)/users").setValue(b)
+            
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixViewController") as! MixViewController
-                    self.present(newViewController, animated: true, completion: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixJoinViewController") as! MixJoinViewController
+            newViewController.roomCode = c
+            self.navigationController!.pushViewController(newViewController, animated: true)
           }
           else {
             // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift

@@ -7,6 +7,23 @@
 
 import Foundation
 
+struct Search: Decodable {
+  var items: Items
+  
+  enum CodingKeys : String, CodingKey {
+    case items = "tracks"
+  }
+}
+
+struct Items: Decodable {
+  var tracks: [Track]
+  
+  enum CodingKeys : String, CodingKey {
+    case tracks = "items"
+  }
+}
+
+
 
 struct Tracks: Decodable {
   var tracks: [Track]
