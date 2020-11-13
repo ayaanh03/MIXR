@@ -76,7 +76,14 @@ class SignUpViewController: UIViewController {
             
             self.user.uid = userCurr!.uid
             self.user.email = userCurr!.email!
-            self.user.password = password            
+            self.user.password = password
+            
+            // Change Root View Controller to TabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = mainTabBarController
             // debugPrint(self.user.uid)
             return
         })

@@ -132,7 +132,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
 //    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
-            getSongs(title: searchText.replacingOccurrences(of: "'", with: "%27"))
+            getSongs(title: searchText)
         }
         
     }
