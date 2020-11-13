@@ -14,6 +14,8 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var codeLabel: UILabel!
     
+    @IBOutlet weak var generateButton: UIButton!
+    
     @IBOutlet weak var addedSongsTableView: UITableView! {
         didSet{
             addedSongsTableView.delegate = self
@@ -37,8 +39,9 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
             "Content-Type": "application/json",
             "Authorization": "Bearer " + appDelegate.accessToken
         ]
-        
+        generateButton.layer.cornerRadius = 5
         pullSongs()
+        self.addedSongsTableView.reloadData()
         super.viewDidLoad()
         codeLabel.text = "ROOM CODE: " + roomCode
 
@@ -51,8 +54,6 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print(addedSongs.count)
         return addedSongs.count
     }
     
@@ -81,24 +82,27 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.songIDList.append(songID)
                 }
                 songIDs = String(songIDs.dropLast(3))
-                AF.request("https://api.spotify.com/v1/tracks?ids=\(songIDs)", headers: self.headers).responseData { response in
-                    
-                    guard let data = response.data  else { return }
-                    guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
-                      print("Error: Couldn't decode data into a result")
-                      return
-                    }
-                    
-                    tracks.tracks.forEach{ track in
-                        self.addedSongs.append(track)
-                        if self.addedSongs.count != 0 {
-                            let indexPath = IndexPath(row: self.addedSongs.count-1, section: 0)
-                            self.addedSongsTableView.insertRows(at: [indexPath], with: .automatic)
+                if songIDs != "" {
+
+                    AF.request("https://api.spotify.com/v1/tracks?ids=\(songIDs)", headers: self.headers).responseData { response in
+                        
+                        guard let data = response.data  else { return }
+                        guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
+                          print("Error: Couldn't decode data into a result")
+                          return
                         }
                         
+                        tracks.tracks.forEach{ track in
+                            self.addedSongs.append(track)
+                            if self.addedSongs.count != 0 {
+                                let indexPath = IndexPath(row: self.addedSongs.count-1, section: 0)
+                                self.addedSongsTableView.insertRows(at: [indexPath], with: .automatic)
+                            }
+                            
+                            
+                        }
                         
                     }
-                    
                 }
             }
         } else {

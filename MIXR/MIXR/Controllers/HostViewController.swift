@@ -75,7 +75,7 @@ class HostViewController: UIViewController {
     if let user = user{
       uid = user.uid 
     }
-    let newR = ["addedSongs":[String](), "id":code, "name": "Your Mix", "isPrivate": true,"size": "1", "length":"0","users":[uid,"2"]] as [String : Any]
+    let newR = [ "id":code, "name": "Your Mix", "isPrivate": true,"size": "1", "length":"15","users":[uid,"2"]] as [String : Any]
     
     ref.child("rooms/\(code)").setValue(newR)
     

@@ -499,6 +499,18 @@
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <color key="highlightedColor" systemColor="systemGreenColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ4-g8-TRi">
+                                <rect key="frame" x="119" y="206" width="176" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="IJe-13-U5C"/>
+                                </constraints>
+                                <state key="normal" title=" Add Song" image="memories.badge.plus" catalog="system">
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="CsR-E2-f35" kind="presentation" identifier="hostAddSongPressed" id="PLJ-pM-nk9"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DFX-Fq-Nc2">
                                 <rect key="frame" x="0.0" y="297.5" width="414" height="564.5"/>
                                 <color key="backgroundColor" red="0.1312063769" green="0.1312063769" blue="0.1312063769" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -535,28 +547,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ca-Rx-VgZ">
-                                <rect key="frame" x="122" y="128" width="170" height="30"/>
+                                <rect key="frame" x="97" y="135" width="220" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jfm-6w-8WB"/>
                                 </constraints>
-                                <state key="normal" title="GENERATE PLAYLIST">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="GENERATE MIX">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="generatePlaylist:" destination="vKR-4B-J8Y" eventType="touchUpInside" id="Kll-Sy-m9z"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ4-g8-TRi">
-                                <rect key="frame" x="119" y="206" width="176" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="IJe-13-U5C"/>
-                                </constraints>
-                                <state key="normal" title=" Add Song" image="memories.badge.plus" catalog="system">
-                                    <color key="titleColor" systemColor="systemGreenColor"/>
-                                </state>
-                                <connections>
-                                    <segue destination="CsR-E2-f35" kind="presentation" identifier="hostAddSongPressed" id="PLJ-pM-nk9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -565,11 +566,11 @@
                         <constraints>
                             <constraint firstItem="Ve4-r5-Qww" firstAttribute="top" secondItem="En8-wI-KZT" secondAttribute="top" constant="31" id="0vN-NO-vpu"/>
                             <constraint firstItem="En8-wI-KZT" firstAttribute="trailing" secondItem="cZ4-g8-TRi" secondAttribute="trailing" constant="119" id="7Ty-VF-drc"/>
-                            <constraint firstItem="cZ4-g8-TRi" firstAttribute="top" secondItem="3Ca-Rx-VgZ" secondAttribute="bottom" constant="48" id="8nW-x4-9MK"/>
-                            <constraint firstItem="3Ca-Rx-VgZ" firstAttribute="top" secondItem="Ve4-r5-Qww" secondAttribute="bottom" constant="32.5" id="A6B-eb-zea"/>
+                            <constraint firstItem="cZ4-g8-TRi" firstAttribute="top" secondItem="3Ca-Rx-VgZ" secondAttribute="bottom" constant="41" id="8nW-x4-9MK"/>
+                            <constraint firstItem="3Ca-Rx-VgZ" firstAttribute="top" secondItem="Ve4-r5-Qww" secondAttribute="bottom" constant="39.5" id="A6B-eb-zea"/>
                             <constraint firstItem="Rt1-Ez-84e" firstAttribute="centerX" secondItem="En8-wI-KZT" secondAttribute="centerX" id="AZv-KK-XSn"/>
                             <constraint firstItem="cZ4-g8-TRi" firstAttribute="leading" secondItem="En8-wI-KZT" secondAttribute="leading" constant="119" id="GDc-75-cC7"/>
-                            <constraint firstItem="3Ca-Rx-VgZ" firstAttribute="leading" secondItem="En8-wI-KZT" secondAttribute="leading" constant="122" id="GNo-zP-g4D"/>
+                            <constraint firstItem="3Ca-Rx-VgZ" firstAttribute="leading" secondItem="En8-wI-KZT" secondAttribute="leading" constant="97" id="GNo-zP-g4D"/>
                             <constraint firstItem="En8-wI-KZT" firstAttribute="bottom" secondItem="DFX-Fq-Nc2" secondAttribute="bottom" id="IC8-e9-55D"/>
                             <constraint firstItem="DFX-Fq-Nc2" firstAttribute="top" secondItem="Rt1-Ez-84e" secondAttribute="bottom" constant="8.5" id="K26-Ar-1eL"/>
                             <constraint firstItem="Rt1-Ez-84e" firstAttribute="leading" secondItem="En8-wI-KZT" secondAttribute="leading" constant="126.5" id="Kld-LC-XcG"/>
@@ -587,13 +588,14 @@
                             <constraint firstItem="En8-wI-KZT" firstAttribute="trailing" secondItem="Ve4-r5-Qww" secondAttribute="trailing" id="qRu-Z4-xdE"/>
                             <constraint firstItem="Ve4-r5-Qww" firstAttribute="leading" secondItem="En8-wI-KZT" secondAttribute="leading" id="qiU-Iy-Ket"/>
                             <constraint firstItem="En8-wI-KZT" firstAttribute="trailing" secondItem="DFX-Fq-Nc2" secondAttribute="trailing" id="x9o-AH-iTP"/>
-                            <constraint firstItem="En8-wI-KZT" firstAttribute="trailing" secondItem="3Ca-Rx-VgZ" secondAttribute="trailing" constant="122" id="yU3-iT-PLu"/>
+                            <constraint firstItem="En8-wI-KZT" firstAttribute="trailing" secondItem="3Ca-Rx-VgZ" secondAttribute="trailing" constant="97" id="yU3-iT-PLu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oOE-V1-vYo"/>
                     <connections>
                         <outlet property="addedSongsTableView" destination="DFX-Fq-Nc2" id="ddv-p1-prj"/>
                         <outlet property="codeLabel" destination="Ve4-r5-Qww" id="3GE-oe-Vgt"/>
+                        <outlet property="generateButton" destination="3Ca-Rx-VgZ" id="Ocl-dQ-1Y9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glx-vf-3mQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

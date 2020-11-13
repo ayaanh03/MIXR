@@ -41,6 +41,7 @@ class MixJoinViewController: UIViewController, UITableViewDelegate, UITableViewD
         ]
         
         pullSongs()
+        self.addedSongsTableView.reloadData()
         super.viewDidLoad()
         codeLabel.text = "ROOM CODE: " + roomCode
 
@@ -81,6 +82,7 @@ class MixJoinViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.songIDList.append(songID)
                 }
                 songIDs = String(songIDs.dropLast(3))
+                if songIDs != "" {
                 AF.request("https://api.spotify.com/v1/tracks?ids=\(songIDs)", headers: self.headers).responseData { response in
                     
                     guard let data = response.data  else { return }
@@ -100,6 +102,7 @@ class MixJoinViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                 }
+            }
             }
         } else {
             
