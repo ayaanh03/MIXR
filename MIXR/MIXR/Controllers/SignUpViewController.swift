@@ -44,11 +44,21 @@ class SignUpViewController: UIViewController {
         
         if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
             debugPrint("empty fields")
+            let alert = UIAlertController(title: "Sign up failed", message: "You have empty fields.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
             return
         }
         
         if (confirmPassword != password) {
             debugPrint("Passwords not match")
+            let alert = UIAlertController(title: "Sign up failed", message: "Two passwords you entered don't match.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
             return
         }
         
@@ -59,12 +69,32 @@ class SignUpViewController: UIViewController {
                     switch errCode {
                         case .invalidEmail:
                             debugPrint("invalid email")
+                            let alert = UIAlertController(title: "Sign up failed", message: "The email address is invalid.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         case .emailAlreadyInUse:
                             debugPrint("in use")
+                            let alert = UIAlertController(title: "Sign up failed", message: "You already have an account with this email, please login.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         case .weakPassword:
                             debugPrint("The password must be 6 characters long or more")
+                            let alert = UIAlertController(title: "Sign up failed", message: "Your password is too weak, must be at least 6 characters long or more.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         default:
                             debugPrint("Create User Error: \(error!)")
+                            let alert = UIAlertController(title: "Sign up failed", message: "Sign up failed.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                     }
                 }
                 return
