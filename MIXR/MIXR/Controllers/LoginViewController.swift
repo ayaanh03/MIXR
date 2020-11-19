@@ -37,6 +37,11 @@ class LoginViewController: UIViewController {
         
         if (email.isEmpty || password.isEmpty) {
             debugPrint("empty fields")
+            let alert = UIAlertController(title: "Login failed", message: "You have empty fields.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
             return
         }
         
@@ -47,12 +52,33 @@ class LoginViewController: UIViewController {
                     switch errCode {
                         case .invalidEmail:
                             debugPrint("invalid email")
+                            let alert = UIAlertController(title: "Login failed", message: "The email address is invalid.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         case .wrongPassword:
                             debugPrint("Wrong password")
+                            let alert = UIAlertController(title: "Login failed", message: "Wrong password.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         case .userNotFound:
                             debugPrint("You don't have an account yet, please sign up")
+                            let alert = UIAlertController(title: "Login failed", message: "You don't have an account yet, please sign up first.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
                         default:
                             debugPrint("Login User Error: \(error!)")
+                            let alert = UIAlertController(title: "Login failed", message: "Login in failed.", preferredStyle: .alert)
+
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+                            self.present(alert, animated: true)
+                            
                     }
                 }
                 return
