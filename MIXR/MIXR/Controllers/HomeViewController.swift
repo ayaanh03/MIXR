@@ -37,8 +37,8 @@ class HomeViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let appRemote = appDelegate.appRemote
         appRemote.authorizeAndPlayURI("", asRadio: false, additionalScopes: ["playlist-modify-public", "playlist-modify-private", "user-modify-playback-state", "user-library-modify"])
-//        appRemote.playerAPI?.pause()
-        print(appDelegate.accessToken)
+        //print(appRemote.authorizationParametersFromURL())
+        print("accessToken is ", appDelegate.accessToken)
         
        
         
