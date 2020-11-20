@@ -84,7 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
 //
     
         func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        print("connected")
+            appRemote.playerAPI?.pause()
+            
+            print("connected")
 //        self.appRemote.playerAPI?.delegate = self
 //            appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
 //                if let error = error {
