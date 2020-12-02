@@ -29,6 +29,7 @@
 		5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
 		9F12DC262577676E006D5C2A /* SearchRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */; };
 		9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */; };
+		9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */; };
 		9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */; };
 		9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */; };
 		9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */; };
@@ -79,6 +80,7 @@
 		5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModelTests.swift; sourceTree = "<group>"; };
 		9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoomTableViewController.swift; sourceTree = "<group>"; };
 		9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		9F33CDD4255DA7E1005F8C19 /* MixJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixJoinViewController.swift; sourceTree = "<group>"; };
 		9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDifference.swift; sourceTree = "<group>"; };
 		9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTapOutKeyboard.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF901982555887D005121B9 /* HomeViewController.swift */,
+				9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */,
 				9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */,
 				9FF901EC25558F50005121B9 /* LoginViewController.swift */,
 				9FF90202255596A9005121B9 /* JoinViewController.swift */,
@@ -456,6 +459,7 @@
 				5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */,
 				9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */,
 				5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */,
+				9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */,
 				9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */,
 				9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */,
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,

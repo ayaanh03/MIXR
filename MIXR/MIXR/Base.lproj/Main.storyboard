@@ -881,7 +881,7 @@
         <!--Library-->
         <scene sceneID="Eo2-7u-hq1">
             <objects>
-                <collectionViewController id="InF-nK-e9y" sceneMemberID="viewController">
+                <collectionViewController id="InF-nK-e9y" customClass="LibraryCollectionViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="a1W-9f-mjw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
