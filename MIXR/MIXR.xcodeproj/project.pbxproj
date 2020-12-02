@@ -30,6 +30,7 @@
 		9F12DC262577676E006D5C2A /* SearchRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */; };
 		9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */; };
 		9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */; };
+		9F12DC3525776CC2006D5C2A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC3425776CC2006D5C2A /* AccountViewController.swift */; };
 		9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */; };
 		9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */; };
 		9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */; };
@@ -81,6 +82,7 @@
 		9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoomTableViewController.swift; sourceTree = "<group>"; };
 		9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
+		9F12DC3425776CC2006D5C2A /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		9F33CDD4255DA7E1005F8C19 /* MixJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixJoinViewController.swift; sourceTree = "<group>"; };
 		9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDifference.swift; sourceTree = "<group>"; };
 		9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTapOutKeyboard.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF901982555887D005121B9 /* HomeViewController.swift */,
+				9F12DC3425776CC2006D5C2A /* AccountViewController.swift */,
 				9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */,
 				9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */,
 				9FF901EC25558F50005121B9 /* LoginViewController.swift */,
@@ -449,6 +452,7 @@
 			files = (
 				9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */,
 				9FF90205255596A9005121B9 /* MixHostViewController.swift in Sources */,
+				9F12DC3525776CC2006D5C2A /* AccountViewController.swift in Sources */,
 				9F33CE9D255DF6F7005F8C19 /* AddSongTableViewController.swift in Sources */,
 				9FF901F9255595C9005121B9 /* SignUpViewController.swift in Sources */,
 				9F33CE81255DCEC2005F8C19 /* MixJoinViewController.swift in Sources */,

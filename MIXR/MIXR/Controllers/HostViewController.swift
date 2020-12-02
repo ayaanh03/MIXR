@@ -26,6 +26,8 @@ class HostViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupToHideKeyboardOnTapOnView()
+
         // Do any additional setup after loading the view.
     }
   

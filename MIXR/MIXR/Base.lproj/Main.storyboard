@@ -124,25 +124,12 @@
                                     <action selector="buttonTapped:" destination="yWO-qg-wFl" eventType="touchUpInside" id="ecB-yq-gQs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pc2-RI-Tcu">
-                                <rect key="frame" x="334" y="18" width="60" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="1QA-nm-eEb"/>
-                                    <constraint firstAttribute="height" constant="30" id="oC6-Bk-9pN"/>
-                                </constraints>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutTapped:" destination="yWO-qg-wFl" eventType="touchUpInside" id="cu1-Mp-ynY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OEZ-yX-ehJ"/>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="OEZ-yX-ehJ" firstAttribute="trailing" secondItem="pc2-RI-Tcu" secondAttribute="trailing" constant="20" id="50K-gd-yh5"/>
                             <constraint firstItem="nsT-EY-I5D" firstAttribute="top" secondItem="OEZ-yX-ehJ" secondAttribute="top" constant="197" id="eOW-vU-e45"/>
                             <constraint firstItem="nsT-EY-I5D" firstAttribute="centerX" secondItem="aqT-lZ-hGL" secondAttribute="centerX" id="kMc-mE-lvX"/>
-                            <constraint firstItem="pc2-RI-Tcu" firstAttribute="top" secondItem="OEZ-yX-ehJ" secondAttribute="top" constant="18" id="oWh-gU-ZAb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" leftItemsSupplementBackButton="YES" id="grb-5w-QP7">
@@ -162,12 +149,29 @@
         <!--Account-->
         <scene sceneID="E48-7n-ZDC">
             <objects>
-                <viewController id="9e7-gk-lfX" sceneMemberID="viewController">
+                <viewController id="9e7-gk-lfX" customClass="AccountViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F4y-fi-bfy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrL-CC-fmD">
+                                <rect key="frame" x="334" y="20" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="N0b-8B-rfg"/>
+                                    <constraint firstAttribute="width" constant="60" id="xQZ-4B-B5k"/>
+                                </constraints>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutTapped:" destination="9e7-gk-lfX" eventType="touchUpInside" id="Xvg-BT-8Od"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="XgL-Ki-eht"/>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.1312063769" blue="0.1312063769" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="lrL-CC-fmD" firstAttribute="top" secondItem="F4y-fi-bfy" secondAttribute="top" constant="20" symbolic="YES" id="HCk-SA-fzD"/>
+                            <constraint firstItem="lrL-CC-fmD" firstAttribute="trailing" secondItem="F4y-fi-bfy" secondAttribute="trailingMargin" id="sc0-zm-KNl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="WfQ-OT-vrR"/>
                 </viewController>

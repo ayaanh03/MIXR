@@ -17,20 +17,6 @@ class HomeViewController: UIViewController {
     }
   
     
-    @IBAction func signOutTapped(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            
-            let loginController = storyboard.instantiateViewController(identifier: "LoginViewController")
-            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = loginController
-        } catch let signOutError as NSError {
-          print ("Error signing out: %@", signOutError)
-        }
-      
-    }
     
     @IBAction func buttonTapped(_ sender: Any) {
         print("buttonTapped")
