@@ -16,20 +16,18 @@ class HostViewController: UIViewController {
   
   
 
-//
-//  @IBOutlet weak var name: UITextField!
-//  @IBOutlet weak var size: UILabel!
-//
-//  @IBOutlet weak var start: UIButton!
-//  @IBOutlet weak var privacy: UISwitch!
-//  @IBOutlet weak var sizestep: UIStepper!
-//  @IBOutlet weak var length: UISlider!
-//  @IBOutlet weak var lengthLabel: UILabel!
-//
+
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var size: UITextField!
+    @IBOutlet weak var privacySwitch: UISwitch!
+    @IBOutlet weak var length: UITextField!
+
   
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupToHideKeyboardOnTapOnView()
+
         // Do any additional setup after loading the view.
     }
   
