@@ -27,6 +27,7 @@
 		5FB4C3D825579FE0009C81B9 /* SongModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */; };
 		5FB4C3DD2557A2B6009C81B9 /* RoomModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */; };
 		5FEB175A255B42640038C930 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901EC25558F50005121B9 /* LoginViewController.swift */; };
+		9AA30C74257A65DD001F9329 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AA30C73257A65DD001F9329 /* Main.storyboard */; };
 		9F12DC262577676E006D5C2A /* SearchRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */; };
 		9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */; };
 		9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */; };
@@ -39,7 +40,6 @@
 		9F7B1EB3255CA7600017A034 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7B1EB2255CA7600017A034 /* SpotifyiOS.framework */; };
 		9FF901952555887D005121B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901942555887D005121B9 /* AppDelegate.swift */; };
 		9FF901992555887D005121B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF901982555887D005121B9 /* HomeViewController.swift */; };
-		9FF9019C2555887D005121B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF9019A2555887D005121B9 /* Main.storyboard */; };
 		9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FF9019D2555887D005121B9 /* MIXR.xcdatamodeld */; };
 		9FF901A125558881005121B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF901A025558881005121B9 /* Assets.xcassets */; };
 		9FF901A425558881005121B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF901A225558881005121B9 /* LaunchScreen.storyboard */; };
@@ -79,6 +79,7 @@
 		5FB4C3D225579536009C81B9 /* UserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3D725579FE0009C81B9 /* SongModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModelTests.swift; sourceTree = "<group>"; };
 		5FB4C3DC2557A2B6009C81B9 /* RoomModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModelTests.swift; sourceTree = "<group>"; };
+		9AA30C73257A65DD001F9329 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9F12DC252577676E006D5C2A /* SearchRoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoomTableViewController.swift; sourceTree = "<group>"; };
 		9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		9FF901912555887D005121B9 /* MIXR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIXR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF901942555887D005121B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF901982555887D005121B9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		9FF9019B2555887D005121B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FF9019E2555887D005121B9 /* MIXR.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIXR.xcdatamodel; sourceTree = "<group>"; };
 		9FF901A025558881005121B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FF901A325558881005121B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 				9FF901942555887D005121B9 /* AppDelegate.swift */,
 				9F33CE07255DBF41005F8C19 /* Extensions */,
 				9FF901F425558F60005121B9 /* Controllers */,
-				9FF9019A2555887D005121B9 /* Main.storyboard */,
 				9FF901A025558881005121B9 /* Assets.xcassets */,
+				9AA30C73257A65DD001F9329 /* Main.storyboard */,
 				9FF901A225558881005121B9 /* LaunchScreen.storyboard */,
 				9FF901A525558881005121B9 /* Info.plist */,
 				9FF9019D2555887D005121B9 /* MIXR.xcdatamodeld */,
@@ -381,7 +381,7 @@
 				9FF901A425558881005121B9 /* LaunchScreen.storyboard in Resources */,
 				5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
 				9FF901A125558881005121B9 /* Assets.xcassets in Resources */,
-				9FF9019C2555887D005121B9 /* Main.storyboard in Resources */,
+				9AA30C74257A65DD001F9329 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,14 +518,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9FF9019A2555887D005121B9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9FF9019B2555887D005121B9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9FF901A225558881005121B9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
