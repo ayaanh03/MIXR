@@ -979,20 +979,23 @@
                                 </constraints>
                                 <state key="normal" image="backward" catalog="system"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8s-VW-XkN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8s-VW-XkN">
                                 <rect key="frame" x="0.0" y="474" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frh-y1-sb1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frh-y1-sb1">
                                 <rect key="frame" x="0.0" y="504" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="swl-hq-jo6">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="swl-hq-jo6">
                                 <rect key="frame" x="20" y="71" width="374" height="383"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10727928585817899" colorSpace="custom" customColorSpace="sRGB"/>
+                                <imageReference key="image" image="music.note" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2HY-du-pvQ"/>
@@ -1009,7 +1012,7 @@
                             <constraint firstItem="2HY-du-pvQ" firstAttribute="trailing" secondItem="v8s-VW-XkN" secondAttribute="trailing" id="FqV-QJ-JuC"/>
                             <constraint firstItem="P47-v8-tE1" firstAttribute="centerY" secondItem="Iv8-l5-BYA" secondAttribute="centerY" id="J7p-nb-6dV"/>
                             <constraint firstItem="swl-hq-jo6" firstAttribute="leading" secondItem="2HY-du-pvQ" secondAttribute="leading" constant="20" id="KSa-eY-h8P"/>
-                            <constraint firstItem="swl-hq-jo6" firstAttribute="top" secondItem="2HY-du-pvQ" secondAttribute="top" constant="71" id="LSV-Ku-njj"/>
+                            <constraint firstItem="swl-hq-jo6" firstAttribute="top" secondItem="2HY-du-pvQ" secondAttribute="top" constant="30" id="LSV-Ku-njj"/>
                             <constraint firstItem="2HY-du-pvQ" firstAttribute="trailing" secondItem="Frh-y1-sb1" secondAttribute="trailing" id="SaN-HH-b7e"/>
                             <constraint firstItem="Iv8-l5-BYA" firstAttribute="top" secondItem="Frh-y1-sb1" secondAttribute="bottom" constant="43" id="UXG-s0-Ng2"/>
                             <constraint firstItem="v8s-VW-XkN" firstAttribute="top" secondItem="swl-hq-jo6" secondAttribute="bottom" constant="20" id="doy-cT-vWY"/>
@@ -1043,6 +1046,7 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="memories.badge.plus" catalog="system" width="128" height="104"/>
         <image name="mixrLogo" width="778" height="320"/>
+        <image name="music.note" catalog="system" width="97" height="128"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemGreenColor">
