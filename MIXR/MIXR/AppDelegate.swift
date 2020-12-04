@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
 //
     
         func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-            appRemote.playerAPI?.pause()
+            
             
             print("connected")
 //        self.appRemote.playerAPI?.delegate = self

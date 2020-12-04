@@ -990,6 +990,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="27185"/>
+                                <connections>
+                                    <action selector="didPressPlayPauseButton:" destination="jpE-LN-f8d" eventType="touchUpInside" id="ojA-7L-gTe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-jD-fLk">
                                 <rect key="frame" x="274.5" y="570.5" width="50" height="50"/>
@@ -998,6 +1001,9 @@
                                     <constraint firstAttribute="width" constant="50" id="AzJ-r2-Ul1"/>
                                 </constraints>
                                 <state key="normal" image="forward" catalog="system"/>
+                                <connections>
+                                    <action selector="nextSong:" destination="jpE-LN-f8d" eventType="touchUpInside" id="fWx-hp-ele"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P47-v8-tE1">
                                 <rect key="frame" x="89.5" y="570.5" width="50" height="50"/>
@@ -1006,6 +1012,9 @@
                                     <constraint firstAttribute="width" constant="50" id="fhG-gd-khK"/>
                                 </constraints>
                                 <state key="normal" image="backward" catalog="system"/>
+                                <connections>
+                                    <action selector="prevSong:" destination="jpE-LN-f8d" eventType="touchUpInside" id="uof-4s-Clz"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8s-VW-XkN">
                                 <rect key="frame" x="0.0" y="474" width="414" height="21"/>
@@ -1051,6 +1060,8 @@
                     <navigationItem key="navigationItem" title="Music Player" id="KAX-x0-Nkg"/>
                     <connections>
                         <outlet property="artistLabel" destination="Frh-y1-sb1" id="WPo-7H-2vY"/>
+                        <outlet property="nextButton" destination="FDI-jD-fLk" id="F4u-7D-Ij5"/>
+                        <outlet property="prevButton" destination="P47-v8-tE1" id="yVf-mE-8rG"/>
                         <outlet property="songImage" destination="swl-hq-jo6" id="ZIa-8g-NKW"/>
                         <outlet property="songLabel" destination="v8s-VW-XkN" id="wlU-6k-KSm"/>
                     </connections>
