@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3617.3913043478265" y="1712.9464285714284"/>
+            <point key="canvasLocation" x="-4235" y="1062"/>
         </scene>
         <!--Home-->
         <scene sceneID="6nQ-mK-Ocj">
@@ -211,7 +211,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWE-MH-pXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2532" y="1228"/>
+            <point key="canvasLocation" x="-2600" y="1460"/>
         </scene>
         <!--Home-->
         <scene sceneID="Ice-Vj-TuU">
@@ -334,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWf-Lz-GXE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3617.3913043478265" y="2493.75"/>
+            <point key="canvasLocation" x="-4235" y="1858"/>
         </scene>
         <!--Host-->
         <scene sceneID="szd-Y5-5d2">
@@ -722,7 +722,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glx-vf-3mQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="1458"/>
+            <point key="canvasLocation" x="2055" y="1940"/>
         </scene>
         <!--Add Song Table View Controller-->
         <scene sceneID="bg6-nv-GTo">
@@ -961,7 +961,7 @@
                                     <constraint firstAttribute="height" constant="55" id="ZAi-Hl-aei"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="27185"/>
+                                <state key="normal" image="playButton"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-jD-fLk">
                                 <rect key="frame" x="274.5" y="570.5" width="50" height="50"/>
@@ -1034,7 +1034,6 @@
     </scenes>
     <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>
-        <image name="27185" width="512" height="512"/>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="backward" catalog="system" width="128" height="79"/>
         <image name="badge.plus.radiowaves.right" catalog="system" width="128" height="102"/>
@@ -1049,6 +1048,7 @@
         <image name="music.note" catalog="system" width="97" height="128"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="playButton" width="512" height="512"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

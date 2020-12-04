@@ -52,6 +52,14 @@ class LibraryCollectionViewController: UICollectionViewController {
     
         // Configure the cell
         cell.configureCell()
+        let y = (cell.bounds.size.width/2) - 20
+        let title = UILabel(frame: CGRect(x: 0, y: y, width: cell.bounds.size.width, height: 40))
+        title.text = "Text"
+        title.textAlignment = .center
+        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = UIColor.white
+      
+        cell.contentView.addSubview(title)
         
     
         return cell
