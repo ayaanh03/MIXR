@@ -76,11 +76,19 @@ class SignUpViewController: UIViewController {
                             self.present(alert, animated: true)
                         case .emailAlreadyInUse:
                             debugPrint("in use")
-                            let alert = UIAlertController(title: "Sign up failed", message: "You already have an account with this email, please login.", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Already Have an Account.", message: "Would you like to send an email to reset your password?", preferredStyle: .alert)
 
-                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-
+                            alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {_ in
+                                Auth.auth().sendPasswordReset(withEmail: self.emailTextField.text ?? "") {_ in
+                                       let alert = UIAlertController(title: "Password Reset", message: "Reset Link sent to your email: "+(self.emailTextField.text ?? ""), preferredStyle: .alert)
+                                       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                                       self.present(alert, animated: true)
+                                }
+                                
+                            }))
                             self.present(alert, animated: true)
+                          
                         case .weakPassword:
                             debugPrint("The password must be 6 characters long or more")
                             let alert = UIAlertController(title: "Sign up failed", message: "Your password is too weak, must be at least 6 characters long or more.", preferredStyle: .alert)

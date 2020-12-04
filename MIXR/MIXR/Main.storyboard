@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nNh-LK-l8y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nNh-LK-l8y">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -59,10 +59,11 @@
                                     <segue destination="Shw-5v-NrN" kind="showDetail" identifier="signUpClick" id="j0J-0N-9Yv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't Have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zAz-Eh-iva">
-                                <rect key="frame" x="116" y="566" width="182" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your Password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0U1-iO-9ai">
+                                <rect key="frame" x="116" y="658" width="182" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="U1I-ZF-5xF"/>
+                                    <constraint firstAttribute="height" constant="21" id="4Sx-ob-702"/>
+                                    <constraint firstAttribute="width" constant="182" id="Gwa-w4-sMt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,17 +72,44 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mixrLogo" translatesAutoresizingMaskIntoConstraints="NO" id="A1H-vC-myz">
                                 <rect key="frame" x="31" y="77" width="352" height="216"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o49-uM-wls">
+                                <rect key="frame" x="131.5" y="697" width="151" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="8ql-71-Rn0"/>
+                                    <constraint firstAttribute="height" constant="30" id="Bye-de-pxf"/>
+                                </constraints>
+                                <state key="normal" title="Reset Password">
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NEX-Wl-YuI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't Have an Account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zAz-Eh-iva">
+                                <rect key="frame" x="82" y="566" width="250" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="U1I-ZF-5xF"/>
+                                    <constraint firstAttribute="width" constant="250" id="brx-GV-GD9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="A1H-vC-myz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="3e5-B8-f8t"/>
+                            <constraint firstItem="zAz-Eh-iva" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="474-l9-nzp"/>
                             <constraint firstItem="DTu-pD-muM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="163" id="5rq-VV-FpQ"/>
                             <constraint firstItem="KTS-qS-DHm" firstAttribute="top" secondItem="A1H-vC-myz" secondAttribute="bottom" constant="78" id="7Og-Jm-eRJ"/>
+                            <constraint firstItem="o49-uM-wls" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BDx-VF-NS6"/>
                             <constraint firstItem="A1H-vC-myz" firstAttribute="centerX" secondItem="KTS-qS-DHm" secondAttribute="centerX" id="CJc-dU-zFZ"/>
+                            <constraint firstItem="o49-uM-wls" firstAttribute="top" secondItem="0U1-iO-9ai" secondAttribute="bottom" constant="18" id="IPn-pQ-Il5"/>
                             <constraint firstItem="daz-FX-hbI" firstAttribute="top" secondItem="KTS-qS-DHm" secondAttribute="bottom" constant="25" id="Jvr-I5-Z6x"/>
                             <constraint firstItem="daz-FX-hbI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KED-7Q-83T"/>
                             <constraint firstItem="KTS-qS-DHm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="MQo-5J-ITZ"/>
+                            <constraint firstItem="0U1-iO-9ai" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PHj-T6-EBK"/>
                             <constraint firstItem="QFY-Z2-Mgl" firstAttribute="top" secondItem="zAz-Eh-iva" secondAttribute="bottom" constant="23" id="TGP-wB-0ug"/>
                             <constraint firstItem="A1H-vC-myz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UC8-4W-dox"/>
                             <constraint firstItem="daz-FX-hbI" firstAttribute="centerX" secondItem="DTu-pD-muM" secondAttribute="centerX" id="UOJ-b9-gs4"/>
@@ -92,9 +120,9 @@
                             <constraint firstItem="DTu-pD-muM" firstAttribute="centerX" secondItem="zAz-Eh-iva" secondAttribute="centerX" id="cVs-NS-GYX"/>
                             <constraint firstItem="A1H-vC-myz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="33" id="coF-m6-SAP"/>
                             <constraint firstItem="A1H-vC-myz" firstAttribute="centerY" secondItem="k2A-30-w7D" secondAttribute="centerY" id="dHQ-HJ-J4A"/>
+                            <constraint firstItem="0U1-iO-9ai" firstAttribute="top" secondItem="QFY-Z2-Mgl" secondAttribute="bottom" constant="18" id="e6m-5S-TWR"/>
                             <constraint firstItem="k2A-30-w7D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="161" id="j3R-aJ-QvM"/>
                             <constraint firstItem="zAz-Eh-iva" firstAttribute="centerX" secondItem="QFY-Z2-Mgl" secondAttribute="centerX" id="kkd-Uk-Ghe"/>
-                            <constraint firstItem="zAz-Eh-iva" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="116" id="uCe-cg-qH9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -105,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4235" y="1062"/>
+            <point key="canvasLocation" x="-3617.3913043478265" y="1712.9464285714284"/>
         </scene>
         <!--Home-->
         <scene sceneID="6nQ-mK-Ocj">
@@ -211,7 +239,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWE-MH-pXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2600" y="1460"/>
+            <point key="canvasLocation" x="-2532" y="1228"/>
         </scene>
         <!--Home-->
         <scene sceneID="Ice-Vj-TuU">
@@ -334,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWf-Lz-GXE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4235" y="1858"/>
+            <point key="canvasLocation" x="-3617.3913043478265" y="2493.75"/>
         </scene>
         <!--Host-->
         <scene sceneID="szd-Y5-5d2">
@@ -722,7 +750,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glx-vf-3mQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="1940"/>
+            <point key="canvasLocation" x="2014" y="1458"/>
         </scene>
         <!--Add Song Table View Controller-->
         <scene sceneID="bg6-nv-GTo">
@@ -961,7 +989,7 @@
                                     <constraint firstAttribute="height" constant="55" id="ZAi-Hl-aei"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="playButton"/>
+                                <state key="normal" image="27185"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-jD-fLk">
                                 <rect key="frame" x="274.5" y="570.5" width="50" height="50"/>
@@ -1034,6 +1062,7 @@
     </scenes>
     <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>
+        <image name="27185" width="512" height="512"/>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="backward" catalog="system" width="128" height="79"/>
         <image name="badge.plus.radiowaves.right" catalog="system" width="128" height="102"/>
@@ -1048,7 +1077,6 @@
         <image name="music.note" catalog="system" width="97" height="128"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="playButton" width="512" height="512"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -116,7 +116,14 @@ class LoginViewController: UIViewController {
     
     @IBAction func signupTapped(_ sender: Any) {
     }
-    
+  
+  @IBAction func resetTapped(_ sender: Any) {
+      Auth.auth().sendPasswordReset(withEmail: emailTextField.text ?? "") {_ in
+             let alert = UIAlertController(title: "Password Reset", message: "Reset Link sent to your email: "+(self.emailTextField.text ?? ""), preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+             self.present(alert, animated: true)
+      }
+  }
     /**
             Pass user.uid to next viewController
      */
