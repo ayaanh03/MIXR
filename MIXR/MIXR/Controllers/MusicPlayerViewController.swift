@@ -7,6 +7,14 @@
 
 import UIKit
 
+
+var appRemote: SPTAppRemote? {
+  get {
+    return (UIApplication.shared.delegate as? AppDelegate)?.appRemote
+  }
+}
+
+
 class MusicPlayerViewController: UIViewController {
   private var playerState: SPTAppRemotePlayerState?
   private var playing: Bool?
@@ -45,11 +53,17 @@ class MusicPlayerViewController: UIViewController {
     }
   }
   
-  var appRemote: SPTAppRemote? {
-    get {
-      return (UIApplication.shared.delegate as? AppDelegate)?.appRemote
-    }
+  //Resub function to subscribe to changes
+  func resub(){
+    getPlayerState()
+    appRemote?.playerAPI?.delegate = self
+    appRemote?.playerAPI?.subscribe(toPlayerState: { (result, error) in
+        if let error = error {
+          debugPrint(error.localizedDescription)
+        }
+      })
   }
+  
   
   //MARK: Code for music player
   @IBOutlet weak var songImage: UIImageView!
@@ -60,9 +74,9 @@ class MusicPlayerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getPlayerState()
-//    playing = true
   }
+  
+ 
   
   // MARK: Album Art
   private func updateAlbumArtWithImage(_ image: UIImage) {
@@ -82,15 +96,14 @@ class MusicPlayerViewController: UIViewController {
       })
   }
   
+  //MARK: Update functions
   private func updateViewWithPlayerState(_ playerState:SPTAppRemotePlayerState) {
-    print("updating player state")
-//      updatePlayPauseButtonState(playerState.isPaused)
       songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
       fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
           self.updateAlbumArtWithImage(image)
       }
       updateViewWithRestrictions(playerState.playbackRestrictions)
-
+   
   }
   
   
@@ -99,6 +112,7 @@ class MusicPlayerViewController: UIViewController {
       prevButton.isEnabled = restrictions.canSkipPrevious
   }
   
+  //MARK: Music Player buttons
   @IBAction func nextSong(_ sender: Any){
     appRemote?.playerAPI?.skip(toNext: defaultCallback)
   }
@@ -115,27 +129,29 @@ class MusicPlayerViewController: UIViewController {
     appRemote?.playerAPI?.pause(defaultCallback)
   }
   
-  // MARK: This took some work to stabilize I'll optimize later (-Ayaan)
-  // API isn't fast enough so need local variable (playing) to keep track of things.
+  //MARK: Works (Test for stability) -Ay
   @IBAction func didPressPlayPauseButton(_ sender: Any) {
-    if self.appRemote?.isConnected == true {
-      if playing == false && (self.playerState == nil || self.playerState!.isPaused) {
-        print("playing")
-        self.startPlayback()
-        playing = true
-      } else {
-        print("pausing")
-        self.pausePlayback()
-        playing = false
-      }
+   
+    if appRemote?.isConnected == false {
+        if appRemote?.authorizeAndPlayURI("") == false {
+            // The Spotify app is not installed, present the user with an App Store page
+            print("Spotify not found")
+        }
+      
+    } else if playerState == nil || playerState!.isPaused {
+        startPlayback()
+    } else {
+        pausePlayback()
     }
-  }
+}
 }
 
 // MARK: - SPTAppRemotePlayerStateDelegate
+// Need this for album art and play pause to work without crashing.
 extension MusicPlayerViewController: SPTAppRemotePlayerStateDelegate {
        func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
            self.playerState = playerState
            updateViewWithPlayerState(playerState)
+//        print("BIG STATE CHANGE")
        }
 }
