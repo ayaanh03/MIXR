@@ -23,7 +23,7 @@ class JoinViewController: UIViewController {
     }
   
   @IBAction func pressB(sender: UIButton){
-    var ref = Database.database().reference()
+    let ref = Database.database().reference()
     var p:NSDictionary?
     if let c = codeTextField.text {
       if c.count != 4 {
@@ -31,28 +31,36 @@ class JoinViewController: UIViewController {
       }
       else {
         ref.child("rooms/\(c)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
-//          print("bruh",DataSnapshot.value)
           p = DataSnapshot.value as? NSDictionary
           if let a = p
           {
-//            print()
-            let temp = a["users"] as! NSArray
-            var b:[String] = temp.compactMap({$0 as? String})
-            let user  = Auth.auth().currentUser
-            var uid = "brhu"
-            if let user = user{
-              uid = user.uid
-            }
-            if !b.contains(uid) {
-                b.append(uid)
+
+            //Check if there are already users
+            if let usersArr = a["users"] as? NSArray{
+                var b:[String] = usersArr.compactMap({$0 as? String})
+                if let user  = Auth.auth().currentUser {
                 
-                ref.child("rooms/\(c)/users").setValue(b)
+                  let uid = user.uid
+                    if !b.contains(uid) {
+                        b.append(uid)
+                        
+                        ref.child("rooms/\(c)/users").setValue(b)
+                    }
+                }
+                
             }
-            print(b)
+            // add a users array
+            else {
+                if let user  = Auth.auth().currentUser {
+                    let uid = user.uid
+                    ref.child("rooms/\(c)/users").setValue([uid])
+                }
+                
+            }
             
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixJoinViewController") as! MixJoinViewController
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
             newViewController.roomCode = c
             self.navigationController!.pushViewController(newViewController, animated: true)
           }

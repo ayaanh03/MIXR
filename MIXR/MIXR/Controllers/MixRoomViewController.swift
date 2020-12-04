@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Firebase
 
-class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var codeLabel: UILabel!
     
@@ -23,7 +23,7 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
+    let ref = Database.database().reference()
     var roomCode : String = ""
     var addedSongs = [Track]()
     
@@ -40,6 +40,8 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
             "Authorization": "Bearer " + appDelegate.accessToken
         ]
         generateButton.layer.cornerRadius = 5
+        generateButton.isHidden = true;
+        checkHost()
         pullSongs()
         self.addedSongsTableView.reloadData()
         super.viewDidLoad()
@@ -65,11 +67,30 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func checkHost() {
+        var p : NSDictionary?
+        if let user = Auth.auth().currentUser  {
+            ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
+                p = DataSnapshot.value as? NSDictionary
+                if let room = p {
+                    if let host = room["host"] as? String {
+                        
+
+                        if user.uid == host{
+                            self.generateButton.isHidden = false;
+                        }
+                    }
+                }
+            })
+        }
+        
+        
+    }
+    
     
     
     func pullSongs() {
         var p:NSDictionary?
-        var ref = Database.database().reference()
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
         if let a = p {
@@ -237,6 +258,13 @@ class MixHostViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let destinationVC = segue.destination as? AddSongTableViewController {
             destinationVC.roomCode = roomCode
            }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        pullSongs()
+        addedSongsTableView.reloadData()
+        
     }
     
 }

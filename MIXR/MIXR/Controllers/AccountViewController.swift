@@ -31,6 +31,24 @@ class AccountViewController: UIViewController {
       
     }
     
+    
+    @IBAction func linkAccountTapped(_ sender: Any) {
+    
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appRemote = appDelegate.appRemote
+        appRemote.authorizeAndPlayURI("", asRadio: false, additionalScopes: ["playlist-modify-public", "playlist-modify-private", "user-modify-playback-state", "user-library-modify"])
+        //print(appRemote.authorizationParametersFromURL())
+        print("accessToken is ", appDelegate.accessToken)
+        
+       
+        
+        
+
+            
+        
+    }
+    
+    
 
     
 

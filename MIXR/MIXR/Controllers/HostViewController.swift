@@ -12,9 +12,6 @@ import FirebaseAuth
 
 class HostViewController: UIViewController {
   
-  var td:[String:String] = ["bruh":"testbruh"]
-  
-  
 
 
     @IBOutlet weak var name: UITextField!
@@ -31,15 +28,7 @@ class HostViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
   
-//  @IBAction func step(sender: UIStepper){
-////    size.text = "bruh"
-//    size.text = String(Int(sizestep.value))
-//  }
-//
-//  @IBAction func lengths(sender: UISlider){
-//    lengthLabel.text = String(Int(length.value))
-//  }
-//
+
 //  Taken from https://stackoverflow.com/questions/26845307/generate-random-alphanumeric-string-in-swift
   
   func randomString(length: Int) -> String {
@@ -48,13 +37,8 @@ class HostViewController: UIViewController {
   }
   
   @IBAction func makeR(sender: UIButton){
-    var ref = Database.database().reference()
-//    print("Creating Room as follows:")
-//    print(name.text ?? "Your Mix")
-//    print("Private: ", privacy.isOn)
-//    print(size.text ?? "1 person")
-//    print(lengthLabel.text ?? "0 minutes")
-    
+    let ref = Database.database().reference()
+
     var code = ""
     var p:NSDictionary?
     
@@ -69,18 +53,31 @@ class HostViewController: UIViewController {
       if p==nil {break}
     }
     let user  = Auth.auth().currentUser
-    var uid = ""
+    
+    
+    //If signed in, allow creation of room
     if let user = user{
-      uid = user.uid 
+        
+      let uid = user.uid
+        let newR = [
+            "id": code,
+            "name": name.text ?? "Playlist",
+            "isPrivate": privacySwitch.isOn,
+            "size": size.text ?? "1",
+            "length": length.text ?? "15",
+            "host": uid,
+            "active" : true,
+            "users": []
+        ] as [String : Any]
+        
+        ref.child("rooms/\(code)").setValue(newR)
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
+        newViewController.roomCode = code
+        self.navigationController!.pushViewController(newViewController, animated: true)
+        
     }
-    let newR = [ "id":code, "name": "Your Mix", "isPrivate": true,"size": "1", "length":"15","users":[uid,"2"]] as [String : Any]
-    
-    ref.child("rooms/\(code)").setValue(newR)
-    
-    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixHostViewController") as! MixHostViewController
-    newViewController.roomCode = code
-    self.navigationController!.pushViewController(newViewController, animated: true)
     
   }
   

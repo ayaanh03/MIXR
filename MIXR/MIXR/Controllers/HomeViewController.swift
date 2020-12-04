@@ -18,27 +18,7 @@ class HomeViewController: UIViewController {
   
     
     
-    @IBAction func buttonTapped(_ sender: Any) {
-        print("buttonTapped")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let appRemote = appDelegate.appRemote
-        appRemote.authorizeAndPlayURI("", asRadio: false, additionalScopes: ["playlist-modify-public", "playlist-modify-private", "user-modify-playback-state", "user-library-modify"])
-        //print(appRemote.authorizationParametersFromURL())
-        print("accessToken is ", appDelegate.accessToken)
-        
-       
-        
-//         Want to play a new track?
-//         appRemote.playerAPI?.play("spotify:track:13WO20hoD72L0J13WTQWlT", callback: { (result, error) in
-//             if let error = error {
-//                 print(error.localizedDescription)
-//             }
-//         })
-        
 
-            
-        
-    }
     
 
 }
