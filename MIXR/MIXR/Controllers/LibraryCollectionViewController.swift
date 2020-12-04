@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
+import FirebaseAuth
 
 private let reuseIdentifier = "Cell"
 
 class LibraryCollectionViewController: UICollectionViewController {
+    
+    @ObservedObject var libraryViewModel = LibraryViewModel()
+    // @State var displayRooms = [RoomModel(idIn: "1111", nameIn: "test", isPrivateIn: true, usersIn: [])]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +28,24 @@ class LibraryCollectionViewController: UICollectionViewController {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
                 layout.itemSize = CGSize(width: width, height: width)
        
+        let userCurr = Auth.auth().currentUser
+        let uid = userCurr!.uid
+        
+        let dbService = DatabaseServiceHelper()
+        dbService.getUserFromDB(uid: uid) { (u) in
 
+            self.libraryViewModel.rooms = u.rooms
+            // self.displayRooms = u.rooms
+            debugPrint(self.libraryViewModel.rooms)
+            self.collectionView.reloadData()
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewDidLoad()
     }
 
     /*
@@ -44,25 +65,37 @@ class LibraryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 20
+        // displayRooms = libraryViewModel.rooms
+        
+        //return displayRooms.count
+        return libraryViewModel.rooms.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-        cell.configureCell()
-        let y = (cell.bounds.size.width/2) - 20
-        let title = UILabel(frame: CGRect(x: 0, y: y, width: cell.bounds.size.width, height: 40))
-        title.text = "Text"
-        title.textAlignment = .center
-        title.font = UIFont.boldSystemFont(ofSize: 16)
-        title.textColor = UIColor.white
-      
-        cell.contentView.addSubview(title)
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+//
+//        // Configure the cell
+//        cell.configureCell()
+//        let y = (cell.bounds.size.width/2) - 20
+//        let title = UILabel(frame: CGRect(x: 0, y: y, width: cell.bounds.size.width, height: 40))
+//        title.text = "Text"
+//        title.textAlignment = .center
+//        title.font = UIFont.boldSystemFont(ofSize: 16)
+//        title.textColor = UIColor.white
+//
+//        cell.contentView.addSubview(title)
+
+        // displayRooms = libraryViewModel.rooms
+        var cell = UICollectionViewCell()
+        if let roomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCell", for: indexPath) as? LibraryCollectionViewCell {
+
+            // roomCell.configure(with: displayRooms[indexPath.row].name)
+            roomCell.configure(with: libraryViewModel.rooms[indexPath.row].name)
+            cell = roomCell
+        }
         
-    
         return cell
+        
     }
 
     // MARK: UICollectionViewDelegate

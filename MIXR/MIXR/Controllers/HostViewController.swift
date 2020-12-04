@@ -71,6 +71,16 @@ class HostViewController: UIViewController {
         ] as [String : Any]
         
         ref.child("rooms/\(code)").setValue(newR)
+        let dbService = DatabaseServiceHelper()
+        dbService.getUserFromDB(uid: uid) { (u) in
+            var rooms: Array<Dictionary<String, String>> = []
+            for r in u.rooms {
+                rooms.append(["id": r.id, "name": r.name])
+            }
+            rooms.append(["id": code, "name": self.name.text ?? "Playlist"])
+            debugPrint(rooms)
+            ref.child("users/\(uid)/rooms").setValue(rooms)
+        }
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
