@@ -10,7 +10,7 @@ import CoreData
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate{
     var window: UIWindow?
     
     
@@ -39,12 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
            
         
-         
-        // Override point for customization after application launch.
-//        let requestedScopes: SPTScope = [.appRemoteControl]
-//        self.sessionManager.initiateSession(with: requestedScopes, options: .default)
-        
-        
         
         if Auth.auth().currentUser?.uid != nil {
             self.window?.rootViewController = storyboard.instantiateViewController(identifier: "MainTabBarController")
@@ -68,39 +62,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
         return true
     }
 
-//    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-//      print("connected")
-//    }
-//    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-//      print("disconnected")
-//    }
-//    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-//      print("failed")
-//    }
-//    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-//      print("player state changed")
-//    }
-//
-//
     
         func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-            appRemote.playerAPI?.pause()
-            
-            print("connected")
-//        self.appRemote.playerAPI?.delegate = self
-//            appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-//                if let error = error {
-//                    debugPrint(error.localizedDescription)
-//                }
-//            })
-        
-       // Want to play a new track?
-       // self.appRemote.playerAPI?.play("spotify:track:13WO20hoD72L0J13WTQWlT", callback: { (result, error) in
-       //     if let error = error {
-       //         print(error.localizedDescription)
-       //     }
-       // })
+          self.appRemote.playerAPI?.delegate = self
+          print("connected")
+          self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+              if let error = error {
+                debugPrint(error.localizedDescription)
+              }
+            })
+        // Added function to resubscribe to updates in music player controller
+        playerViewController.resub()
     }
+      // Allows calling of MusicPlayerVC function
+      var playerViewController: MusicPlayerViewController {
+          get {
+              let navController = self.window?.rootViewController?.children[0] as! UINavigationController
+              return navController.topViewController as! MusicPlayerViewController
+          }
+      }
 
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
         print("disconnected")
@@ -110,21 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
         print("failed")
     }
 
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        print("player state changed")
-        print("isPaused", playerState.isPaused)
-        print("track.uri", playerState.track.uri)
-        print("track.name", playerState.track.name)
-        print("track.imageIdentifier", playerState.track.imageIdentifier)
-        print("track.artist.name", playerState.track.artist.name)
-        print("track.album.name", playerState.track.album.name)
-        print("track.isSaved", playerState.track.isSaved)
-        print("playbackSpeed", playerState.playbackSpeed)
-        print("playbackOptions.isShuffling", playerState.playbackOptions.isShuffling)
-        print("playbackOptions.repeatMode", playerState.playbackOptions.repeatMode.hashValue)
-        print("playbackPosition", playerState.playbackPosition)
-    }
-    
+  func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+    debugPrint("Track name: %@", playerState.track.name)
+  }
+
     func applicationWillResignActive(_ application: UIApplication) {
       if self.appRemote.isConnected {
         self.appRemote.disconnect()
