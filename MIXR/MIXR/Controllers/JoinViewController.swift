@@ -53,7 +53,7 @@ class JoinViewController: UIViewController {
                                 rooms.append(["id": r.id, "name": r.name])
                             }
                             rooms.append(["id": c, "name": a["name"] as! String])
-                            debugPrint(rooms)
+                            // debugPrint(rooms)
                             ref.child("users/\(uid)/rooms").setValue(rooms)
                         }
                     }
