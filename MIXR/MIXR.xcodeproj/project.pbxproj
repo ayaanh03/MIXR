@@ -11,6 +11,8 @@
 		5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9F8255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9FC255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
+		5FA2E9B9257AAF8C008A9B48 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2E9B8257AAF8C008A9B48 /* LibraryViewModel.swift */; };
+		5FA2E9BE257AAF9F008A9B48 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2E9BD257AAF9F008A9B48 /* LibraryCollectionViewCell.swift */; };
 		5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
 		5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
 		5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		40C200D24520B0947BE0D248 /* Pods_MIXR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIXR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceHelper.swift; sourceTree = "<group>"; };
+		5FA2E9B8257AAF8C008A9B48 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		5FA2E9BD257AAF9F008A9B48 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5FB4C390255642C4009C81B9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5FB4C3B22556599E009C81B9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
@@ -147,6 +151,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		5FA2E9B7257AAF52008A9B48 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5FA2E9B8257AAF8C008A9B48 /* LibraryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		5FB4C38F255642A7009C81B9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +211,7 @@
 		9FF901932555887D005121B9 /* MIXR */ = {
 			isa = PBXGroup;
 			children = (
+				5FA2E9B7257AAF52008A9B48 /* ViewModels */,
 				5F65A9E2255B36FC00CD275B /* Helper */,
 				5FB4C38F255642A7009C81B9 /* Models */,
 				9F33CE15255DC347005F8C19 /* Codables */,
@@ -243,6 +256,7 @@
 				9F12DC6D2579B202006D5C2A /* MusicPlayerViewController.swift */,
 				9F12DC3425776CC2006D5C2A /* AccountViewController.swift */,
 				9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */,
+				5FA2E9BD257AAF9F008A9B48 /* LibraryCollectionViewCell.swift */,
 				9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */,
 				9FF901EC25558F50005121B9 /* LoginViewController.swift */,
 				9FF90202255596A9005121B9 /* JoinViewController.swift */,
@@ -453,6 +467,7 @@
 				9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */,
 				9FF90205255596A9005121B9 /* MixRoomViewController.swift in Sources */,
 				9F12DC3525776CC2006D5C2A /* AccountViewController.swift in Sources */,
+				5FA2E9BE257AAF9F008A9B48 /* LibraryCollectionViewCell.swift in Sources */,
 				9F33CE9D255DF6F7005F8C19 /* AddSongTableViewController.swift in Sources */,
 				9FF901F9255595C9005121B9 /* SignUpViewController.swift in Sources */,
 				9FF901ED25558F50005121B9 /* LoginViewController.swift in Sources */,
@@ -470,6 +485,7 @@
 				9F12DC262577676E006D5C2A /* SearchRoomTableViewController.swift in Sources */,
 				9FF901952555887D005121B9 /* AppDelegate.swift in Sources */,
 				5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */,
+				5FA2E9B9257AAF8C008A9B48 /* LibraryViewModel.swift in Sources */,
 				9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

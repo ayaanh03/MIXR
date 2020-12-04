@@ -45,6 +45,17 @@ class JoinViewController: UIViewController {
                         b.append(uid)
                         
                         ref.child("rooms/\(c)/users").setValue(b)
+                        
+                        let dbService = DatabaseServiceHelper()
+                        dbService.getUserFromDB(uid: uid) { (u) in
+                            var rooms: Array<Dictionary<String, String>> = []
+                            for r in u.rooms {
+                                rooms.append(["id": r.id, "name": r.name])
+                            }
+                            rooms.append(["id": c, "name": a["name"] as! String])
+                            debugPrint(rooms)
+                            ref.child("users/\(uid)/rooms").setValue(rooms)
+                        }
                     }
                 }
                 
