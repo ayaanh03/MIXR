@@ -107,6 +107,12 @@ class LibraryCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.opacity = 0.8
+        
+        debugPrint(libraryViewModel.rooms[indexPath.row].id)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
+        newViewController.roomCode = libraryViewModel.rooms[indexPath.row].id
+        self.navigationController!.pushViewController(newViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
