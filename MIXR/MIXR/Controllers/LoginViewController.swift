@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { result, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [self] result, error in
             guard error == nil else {
                 if let errCode = AuthErrorCode(rawValue: error!._code) {
 
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
                 }
                 return
             }
-            
+
             let userCurr = Auth.auth().currentUser!;
             self.user.uid = userCurr.uid
             /**
