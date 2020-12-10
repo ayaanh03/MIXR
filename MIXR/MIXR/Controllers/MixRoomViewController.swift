@@ -160,14 +160,31 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func generatePlaylist(_ sender: Any) {
         pullSongs()
+      var addedSongs = ""
+        var p:NSDictionary?
+        ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
+        p = DataSnapshot.value as? NSDictionary
+        if let a = p {
+            if let songs = a["addedSongs"] as? [String] {
+                //Get new Song ID's
+                addedSongs = ""
+                songs.forEach{ songID in
+                    addedSongs += "spotify:track:"+songID + ","
+//                    self.songIDList.append(songID)
+                }
+            }
+        }})
+              
         getRecommendations { (recs) in
-            
-        
-           
             var recURIString = ""
             recs.tracks.forEach { (track) in
                 recURIString += track.uri + ","
             }
+          print("rec")
+            print(recURIString)
+          print("added")
+          print(addedSongs)
+            recURIString = recURIString + addedSongs
             recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
             self.getUser { (user) in
                
@@ -229,12 +246,12 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
               return
             }
             completion(tracks)
-
         }
-       
     }
     
     func addToPlaylist(uris: String, playlistID: String) {
+      
+      
         AF.request("https://api.spotify.com/v1/playlists/\(playlistID)/tracks?uris=\(uris)", method: .post, headers: self.headers).validate()
             .responseJSON { response in
                 switch response.result {
