@@ -35,8 +35,6 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + appDelegate.accessToken
         ]
-
-      
     }
 
     // MARK: - Table view data source
@@ -94,14 +92,13 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
            
             if let room = p {
                
-                if let users = room["users"] as? [String] {
+                if let users = room["users"] as? [String]{
                     
-                    if users.contains(String(uid)) {
+                  if users.contains(String(uid)) {
                         if let songs = room["addedSongs"] as? NSArray {
                             if !songs.contains(song.id){
                                 let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
                                 ref.child("rooms/\(self.roomCode)/addedSongs").setValue(updatedSongs)
-                                
                             }
                         } else {
                             //Put first song in Room

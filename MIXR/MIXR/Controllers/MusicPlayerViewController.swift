@@ -103,6 +103,8 @@ class MusicPlayerViewController: UIViewController {
           self.updateAlbumArtWithImage(image)
       }
       updateViewWithRestrictions(playerState.playbackRestrictions)
+      
+    
    
   }
   

@@ -39,17 +39,5 @@ class AccountViewController: UIViewController {
         appRemote.authorizeAndPlayURI("", asRadio: false, additionalScopes: ["playlist-modify-public", "playlist-modify-private", "user-modify-playback-state", "user-library-modify"])
         //print(appRemote.authorizationParametersFromURL())
         print("accessToken is ", appDelegate.accessToken)
-        
-       
-        
-        
-
-            
-        
     }
-    
-    
-
-    
-
 }
