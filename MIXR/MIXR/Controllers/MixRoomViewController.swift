@@ -25,6 +25,9 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
     let group = DispatchGroup()
     
+    let q1 = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
+    let g1 = DispatchGroup()
+    
     let ref = Database.database().reference()
     var roomCode : String = ""
     var addedSongs = [Track]()
@@ -129,8 +132,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 let indexPath = IndexPath(row: self.addedSongs.count-1, section: 0)
                                 self.addedSongsTableView.insertRows(at: [indexPath], with: .automatic)
                             }
-                            
-                            
                         }
                     }
                 }
@@ -161,10 +162,19 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func refreshSongs(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         tempTracks.removeAll()
         //self.addedSongs.removeAll()
         //self.songIDList.removeAll()
         pullSongs()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if (self.addedSongs.count >= 5) {
                 self.getSetsOf5()
@@ -172,13 +182,25 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.sets = [self.addedSongs]
             }
             self.createDict()
+            self.dismiss(animated: false, completion: nil)
         }
+        
     }
     
     
     
     
     @IBAction func generatePlaylist(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         print("sortedList is ", self.sortedDict)
         var count = 0
         var toGenerate = 0
@@ -262,18 +284,19 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                     recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
                     print("recURIString is ", recURIString)
                     self.addToPlaylist(uris: recURIString, playlistID: playlist.id)
+                    self.dismiss(animated: false, completion: nil)
+                    let alert1 = UIAlertController(title: "Playlist Created", message: "Playlist Has been created in Spotify app", preferredStyle: .alert)
+                    alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert1, animated: true, completion: nil)
                 }
         }}
-        let alert = UIAlertController(title: "Playlist Created", message: "Playlist Has been created in Spotify app", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
         let dbService = DatabaseServiceHelper()
         dbService.generateProcess(roomCode: roomCode) { (flag) in
             debugPrint("generate success: ", flag)
         }
+        
     }
     
     func getUser(completion: @escaping (User) -> Void) {
