@@ -77,7 +77,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell = UITableViewCell()
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-        cell.textLabel?.text = addedSongs[indexPath.row].name
+        cell.textLabel?.text = addedSongs[indexPath.row].name + " by " + (addedSongs[indexPath.row].artists.first?.name ?? "Unknown")
         return cell
     }
     
@@ -94,10 +94,18 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.generateButton.isHidden = false;
                         }
                     }
+                    if let name = room["name"] as? String {
+                        self.title = name
+                    }
+                   
                 }
             })
         }
         
+        
+    }
+    
+    func countMemebers() {
         
     }
     
@@ -141,7 +149,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             
          // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
-            let alert = UIAlertController(title: "Room closed", message: "The playlist is generated and the room is closed.", preferredStyle: .alert)
+
+         let alert = UIAlertController(title: "Room closed", message: "The playlist is generated and the room is closed.", preferredStyle: .alert)
          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                switch action.style{
                case .default:
@@ -193,6 +202,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func generatePlaylist(_ sender: Any) {
+
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -222,6 +232,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         var recURIString = ""
         var addedSongs = ""
         var nme = ""
+
         var p:NSDictionary?
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
@@ -417,17 +428,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func addToPlaylist(uris: String, playlistID: String) {
-        AF.request("https://api.spotify.com/v1/playlists/\(playlistID)/tracks?uris=\(uris)", method: .post, headers: self.headers).validate(statusCode: 200..<600)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    print("success")
-                case .failure(let error):
-                    print("add error", error)
-                }
-            }
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddSongTableViewController {
@@ -437,9 +438,11 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
         pullSongs()
         addedSongsTableView.reloadData()
         
     }
     
 }
+

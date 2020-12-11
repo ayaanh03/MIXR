@@ -21,6 +21,10 @@ class JoinViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
+    }
   
   @IBAction func pressB(sender: UIButton){
     let ref = Database.database().reference()
