@@ -71,7 +71,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell = UITableViewCell()
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-        cell.textLabel?.text = addedSongs[indexPath.row].name
+        cell.textLabel?.text = addedSongs[indexPath.row].name + " by " + (addedSongs[indexPath.row].artists.first?.name ?? "Unknown")
         return cell
     }
     
@@ -88,10 +88,18 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.generateButton.isHidden = false;
                         }
                     }
+                    if let name = room["name"] as? String {
+                        self.title = name
+                    }
+                   
                 }
             })
         }
         
+        
+    }
+    
+    func countMemebers() {
         
     }
     
@@ -197,73 +205,46 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("sortedList is ", self.sortedDict)
         var count = 0
-        var recURIString = ""
-        var addedSongs = ""
+        var recSongs = [String]()
         var p:NSDictionary?
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
         if let a = p {
-            if let songs = a["addedSongs"] as? [String] {
-                //Get new Song ID's
-                addedSongs = ""
-                songs.forEach{ songID in
-                    addedSongs += "spotify:track:"+songID + ","
-//                    self.songIDList.append(songID)
-                }
-            }
-        }})
-        
-        self.getUser { (user) in
-           
-            let parameters : [String : Any] = [
-                "name" : "MIXR ROOM \(self.roomCode)",
-                "public" : false
-            ]
-            AF.request("https://api.spotify.com/v1/users/\(user.id)/playlists", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers).responseJSON { response in
-            
-                guard let data = response.data  else { return }
-                guard let playlist = try? JSONDecoder().decode(Playlist.self, from: data) else {
-                    print("Error: Couldn't decode data into a result")
-                    return
-                }
+            if var songs = a["addedSongs"] as? [String] {
                 self.sortedDict.forEach { dict in
                     for v in dict.1 {
                         if (count <= 14) {
-                        
-                            
-                            AF.request("https://api.spotify.com/v1/tracks/"+v, headers: self.headers).responseJSON { response1 in
-                                guard let data1 = response1.data  else { return }
-                                guard let track = try? JSONDecoder().decode(Track.self, from: data1) else {
-                                    print("Error: Couldn't decode data into a result")
-                                    return
-                                }
-                                print("track is ", track)
-                                recURIString += track.uri + ","
-                            }
+                    
+                            recSongs.append(v)
                             count += 1
                         } else {
                             break
                         }
                     }
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    recURIString = recURIString + addedSongs
-                    recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
-                    print("recURIString is ", recURIString)
-                    self.addToPlaylist(uris: recURIString, playlistID: playlist.id)
+                
+                songs += recSongs
+
+                self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
+                
+                let dbService = DatabaseServiceHelper()
+                dbService.generateProcess(roomCode: self.roomCode, songs: songs) { (flag) in
+                    debugPrint("generate success: ", flag)
                 }
+             
             }
-        }
-        let alert = UIAlertController(title: "Playlist Has been Created", message: "View Spotify Playlist titled MIXR ROOM: \(self.roomCode)", preferredStyle: .alert)
+        }})
+        
+        
+            
+        
+        let alert = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
         
-        let dbService = DatabaseServiceHelper()
-        dbService.generateProcess(roomCode: roomCode) { (flag) in
-            debugPrint("generate success: ", flag)
-        }
+      
     }
     
     func getUser(completion: @escaping (User) -> Void) {
@@ -385,17 +366,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func addToPlaylist(uris: String, playlistID: String) {
-        AF.request("https://api.spotify.com/v1/playlists/\(playlistID)/tracks?uris=\(uris)", method: .post, headers: self.headers).validate(statusCode: 200..<600)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    print("success")
-                case .failure(let error):
-                    print("add error", error)
-                }
-            }
-    }
+
     
     
     
@@ -407,6 +378,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
         pullSongs()
         addedSongsTableView.reloadData()
         

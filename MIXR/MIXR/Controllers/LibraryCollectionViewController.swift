@@ -93,6 +93,7 @@ class LibraryCollectionViewController: UICollectionViewController {
             roomCell.configure(with: libraryViewModel.rooms[indexPath.row].name)
             cell = roomCell
         }
+        cell.configureCell()
         
         return cell
         
@@ -140,20 +141,3 @@ class LibraryCollectionViewController: UICollectionViewController {
 }
 
 
-
-extension UICollectionViewCell {
-    func configureCell() {
-        self.layer.cornerRadius = 5.0
-        self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.clear.cgColor
-        self.backgroundColor = UIColor.systemGreen
-        self.layer.masksToBounds = true
-
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowRadius = 2.0
-        self.layer.shadowOpacity = 1.0
-        self.layer.masksToBounds = false
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
-    }
-}

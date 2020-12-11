@@ -33,6 +33,7 @@ class HostViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
         super.viewWillAppear(animated)
         viewDidLoad()
     }

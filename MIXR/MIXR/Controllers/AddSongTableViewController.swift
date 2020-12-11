@@ -91,10 +91,17 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             }
            
             if let room = p {
-               
-                // if let users = room["users"] as? [String]{
+
+                
+                
+                var users = [String]()
+                
+                if let u = room["users"] as? [String] {
+                    users = u
                     
-                  // if users.contains(String(uid)) {
+                }
+
+                   if users.contains(String(uid)) {
                         if let songs = room["addedSongs"] as? NSArray {
                             if !songs.contains(song.id){
                                 let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
@@ -104,10 +111,24 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
                             //Put first song in Room
                             ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
                         }
-                    // }
-                // }
-            }
-            else{
+                 } else {
+                    if let host = room["host"] as? String {
+                        if host == String(uid) {
+                            if let songs = room["addedSongs"] as? NSArray {
+                                if !songs.contains(song.id){
+                                    let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
+                                    ref.child("rooms/\(self.roomCode)/addedSongs").setValue(updatedSongs)
+                                }
+                            } else {
+                                //Put first song in Room
+                                ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
+                            }
+                            
+                        }
+                    }
+                 }
+            
+            }  else{
                 let alert = UIAlertController(title: "Unable to Connect to your room" , message: "Please try again later", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                                                 alert.dismiss(animated: true, completion: nil)}))
@@ -115,7 +136,6 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
                 
             
             }
-            
         })
     }
     
