@@ -15,7 +15,9 @@ var appRemote: SPTAppRemote? {
 }
 
 
+
 class MusicPlayerViewController: UIViewController {
+ 
   private var playerState: SPTAppRemotePlayerState?
   private var playing: Bool?
   
@@ -55,19 +57,20 @@ class MusicPlayerViewController: UIViewController {
   
   //Resub function to subscribe to changes
   func resub(){
-    getPlayerState()
+    
     appRemote?.playerAPI?.delegate = self
     appRemote?.playerAPI?.subscribe(toPlayerState: { (result, error) in
         if let error = error {
           debugPrint(error.localizedDescription)
         }
       })
+    getPlayerState()
   }
   
   
   //MARK: Code for music player
   @IBOutlet weak var songImage: UIImageView!
-  @IBOutlet weak var songLabel: UILabel!
+  @IBOutlet var songLabel: UILabel!
   @IBOutlet weak var artistLabel: UILabel!
   @IBOutlet weak var nextButton: UIButton!
   @IBOutlet weak var prevButton: UIButton!
@@ -98,14 +101,12 @@ class MusicPlayerViewController: UIViewController {
   
   //MARK: Update functions
   private func updateViewWithPlayerState(_ playerState:SPTAppRemotePlayerState) {
-    songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
-    fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-        self.updateAlbumArtWithImage(image)
-    }
-    updateViewWithRestrictions(playerState.playbackRestrictions)
       
-    
-   
+      fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
+          self.updateAlbumArtWithImage(image)
+      }
+      updateViewWithRestrictions(playerState.playbackRestrictions)
+      self.songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
   }
   
   
@@ -131,20 +132,29 @@ class MusicPlayerViewController: UIViewController {
     appRemote?.playerAPI?.pause(defaultCallback)
   }
   
+  func checkconnect() -> Bool{
+    if appRemote?.isConnected == false {
+      if appRemote?.authorizeAndPlayURI("") == false {
+          // The Spotify app is not installed, present the user with an App Store page
+          print("Spotify not found")
+      }
+      resub()
+  }
+    else{return true}
+    return false
+  }
+  
   //MARK: Works (Test for stability) -Ay
   @IBAction func didPressPlayPauseButton(_ sender: Any) {
    
-    if appRemote?.isConnected == false {
-        if appRemote?.authorizeAndPlayURI("") == false {
-            // The Spotify app is not installed, present the user with an App Store page
-            print("Spotify not found")
-        }
+    if  checkconnect() {
       
-    } else if playerState == nil || playerState!.isPaused {
+    if playerState == nil || playerState!.isPaused {
         startPlayback()
     } else {
         pausePlayback()
     }
+}
 }
 }
 

@@ -10,8 +10,9 @@ import CoreData
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate{
-    var window: UIWindow?
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate{
+    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+
     
     
     let SpotifyClientID = "d96b26513f034d05b1c3a365fdeb9f18"
@@ -33,16 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
         
       return appRemote
     }()
-    
+  
+//  lazy var appPlayerState: SPTAppRemotePlayerState = {
+//    return appPlayerState
+//  }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-           
+        
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
         if Auth.auth().currentUser?.uid != nil {
             self.window?.rootViewController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-            
         } else {
             self.window?.rootViewController =  storyboard.instantiateViewController(identifier: "LoginViewController")
             debugPrint("Not Logged In")
@@ -64,17 +68,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
 
     
         func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-          self.appRemote.playerAPI?.delegate = self
+//          self.appRemote.playerAPI?.delegate = self
           print("connected")
-          self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-              if let error = error {
-                debugPrint(error.localizedDescription)
-              }
-            })
+//          self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+//              if let error = error {
+//                debugPrint(error.localizedDescription)
+//              }
+//            })
         // Added function to resubscribe to updates in music player controller
+        // Prevent nil error from view not initializing -Ay
+            self.playerViewController.loadViewIfNeeded()
+
         playerViewController.resub()
     }
-      // Allows calling of MusicPlayerVC function
+// Allows calling of MusicPlayerVC function
       var playerViewController: MusicPlayerViewController {
           get {
               let navController = self.window?.rootViewController?.children[0] as! UINavigationController
@@ -89,10 +96,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPT
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
         print("failed")
     }
-
-  func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-    debugPrint("Track name: %@", playerState.track.name)
-  }
+//
+//  func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+//    appPlayerState = playerState
+//    debugPrint("Track name: %@", playerState.track.name)
+//  }
 
     func applicationWillResignActive(_ application: UIApplication) {
       if self.appRemote.isConnected {
