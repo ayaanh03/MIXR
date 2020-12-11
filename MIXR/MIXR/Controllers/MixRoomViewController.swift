@@ -22,6 +22,9 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
+    let group = DispatchGroup()
+    
     let ref = Database.database().reference()
     var roomCode : String = ""
     var addedSongs = [Track]()
@@ -170,12 +173,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.createDict()
         }
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.createDict()
-        }
-         */
-        
     }
     
     
@@ -184,26 +181,49 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func generatePlaylist(_ sender: Any) {
         print("sortedList is ", self.sortedDict)
         var count = 0
+        var toGenerate = 0
         var recURIString = ""
         var addedSongs = ""
+        var nme = ""
         var p:NSDictionary?
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
         if let a = p {
             if let songs = a["addedSongs"] as? [String] {
+                
+                if let l = a["length"] as? String {
+                    print("l is ", l)
+                    toGenerate = Int(l)! - songs.count
+                }
+                
                 //Get new Song ID's
                 addedSongs = ""
-                songs.forEach{ songID in
-                    addedSongs += "spotify:track:"+songID + ","
-//                    self.songIDList.append(songID)
+                if (toGenerate >= 0) {
+                    songs.forEach{ songID in
+                        addedSongs += "spotify:track:"+songID + ","
+                    }
+                } else {
+                    var c = 0
+                    for songID in songs {
+                        if (c < toGenerate) {
+                            addedSongs += "spotify:track:"+songID + ","
+                            c += 1
+                        } else {
+                            break
+                        }
+
+                    }
+                }
+                
+                if let n = a["name"] as? String {
+                    nme = n
                 }
             }
         }})
         
         self.getUser { (user) in
-           
             let parameters : [String : Any] = [
-                "name" : "MIXR ROOM \(self.roomCode)",
+                "name" : nme,
                 "public" : false
             ]
             AF.request("https://api.spotify.com/v1/users/\(user.id)/playlists", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers).responseJSON { response in
@@ -215,33 +235,36 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 self.sortedDict.forEach { dict in
                     for v in dict.1 {
-                        if (count <= 14) {
-                        
+                        print("toGenerate", toGenerate)
+                        if (toGenerate > 0) {
+                            if (count < toGenerate) {
                             
-                            AF.request("https://api.spotify.com/v1/tracks/"+v, headers: self.headers).responseJSON { response1 in
-                                guard let data1 = response1.data  else { return }
-                                guard let track = try? JSONDecoder().decode(Track.self, from: data1) else {
-                                    print("Error: Couldn't decode data into a result")
-                                    return
+                                
+                                AF.request("https://api.spotify.com/v1/tracks/"+v, headers: self.headers).responseJSON { response1 in
+                                    guard let data1 = response1.data  else { return }
+                                    guard let track = try? JSONDecoder().decode(Track.self, from: data1) else {
+                                        print("Error: Couldn't decode data into a result")
+                                        return
+                                    }
+                                    print("track is ", track)
+                                    recURIString += track.uri + ","
                                 }
-                                print("track is ", track)
-                                recURIString += track.uri + ","
+                                count += 1
+                            } else {
+                                break
                             }
-                            count += 1
                         } else {
                             break
                         }
-                    }
-                }
+                }}
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     recURIString = recURIString + addedSongs
                     recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
                     print("recURIString is ", recURIString)
                     self.addToPlaylist(uris: recURIString, playlistID: playlist.id)
                 }
-            }
-        }
-        let alert = UIAlertController(title: "Playlist Has been Created", message: "View Spotify Playlist titled MIXR ROOM: \(self.roomCode)", preferredStyle: .alert)
+        }}
+        let alert = UIAlertController(title: "Playlist Created", message: "Playlist Has been created in Spotify app", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
             self.dismiss(animated: true, completion: nil)
         }))
@@ -281,27 +304,23 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                             
                             let group = [self.addedSongs[i1], self.addedSongs[i2], self.addedSongs[i3], self.addedSongs[i4], self.addedSongs[i5]]
                             self.sets.append(group)
-                        }
-                    }
-                }
-            }
-        }
-    }
+        }}}}}}
 
     func createDict() {
-
-        self.sets.forEach{ set1 in
-            getRecs1(songs: set1)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                
-                print("length is ", self.tempTracks.count)
+        
+        
+        self.group.enter()
+        
+        self.queue.async(group: group) {
+            self.sets.forEach{ set1 in
+                self.getRecs1(songs: set1)
             }
+            self.group.leave()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+        self.group.notify(queue: self.queue) {
+            print("length", self.tempTracks.count)
             self.tempTracks.forEach{ track in
-                
                 if let x = self.timesRecd[track.id] {
                     self.timesRecd[track.id]! += 1
                 } else {
@@ -311,7 +330,11 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             let flipped = Dictionary(grouping: self.timesRecd.keys.sorted(), by: { self.timesRecd[$0]! })
             self.sortedDict = flipped.sorted(by: { $0.0 > $1.0 })
+            self.tempTracks.removeAll()
+            self.sets.removeAll()
         }
+        
+        
     }
     
     func getTrack(tr: String, completion: @escaping (Track) -> Void) {
@@ -329,7 +352,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func getRecs1(songs: Array<Track>) {
-        //self.tempTracks.removeAll()
         print("tempTracks is ", self.tempTracks)
         var url = "https://api.spotify.com/v1/recommendations?limit=15&seed_tracks="
         //if songs.count == 0 { return songs }
@@ -337,6 +359,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             url += song.id + "%2C"
         }
         url = String(url.dropLast(3))
+        
+        self.group.enter()
         AF.request(url, headers: self.headers).responseJSON { response in
             guard let data = response.data  else { return }
             guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
@@ -344,31 +368,14 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
               return
             }
             
-            var c = 0
-            tracks.tracks.forEach{ track in
-                self.tempTracks.append(track)
-                c += 1
+            for track in tracks.tracks {
+                if (self.tempTracks.count < self.sets.count*15) {
+                    self.tempTracks.append(track)
+                } else {
+                    break
+                }
             }
-            c = 0
-            print("function length", self.tempTracks.count)
-        }
-    }
- 
-    
-    func getRecommendations(completion: @escaping (Tracks) -> Void) {
-        var url = "https://api.spotify.com/v1/recommendations?limit=15&seed_tracks="
-        if self.addedSongs.count == 0 { return }
-        self.addedSongs.forEach{ song in
-            url += song.id + "%2C"
-        }
-        url = String(url.dropLast(3))
-        AF.request(url, headers: self.headers).responseJSON { response in
-            guard let data = response.data  else { return }
-            guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
-              print("Error: Couldn't decode data into a result")
-              return
-            }
-            completion(tracks)
+            self.group.leave()
         }
     }
     
@@ -383,8 +390,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddSongTableViewController {
