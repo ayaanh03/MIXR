@@ -93,6 +93,11 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             if let room = p {
 
                 
+                
+                var users = [String]()
+                
+                if let u = room["users"] as? [String] {
+                    users = u
                     
                 }
 
@@ -106,10 +111,19 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
                             //Put first song in Room
                             ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
                         }
-                    // }
-                // }
-            }
-            else{
+                 } else {
+                    if let host = room["host"] as? String {
+                        if host == String(uid) {
+                            if let songs = room["addedSongs"] as? NSArray {
+                                if !songs.contains(song.id){
+                                    let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
+                                    ref.child("rooms/\(self.roomCode)/addedSongs").setValue(updatedSongs)
+                                }
+                            } else {
+                                //Put first song in Room
+                                ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
+                            }
+                            
                         }
                     }
                  }
