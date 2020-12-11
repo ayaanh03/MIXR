@@ -962,7 +962,7 @@
         <!--Player-->
         <scene sceneID="cDa-PM-Wzq">
             <objects>
-                <navigationController title="Player" id="o5c-zD-N4F" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="player" title="Player" id="o5c-zD-N4F" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Music" image="music.note.list" catalog="system" selectedImage="music.note.list" id="2pT-XV-Tap">
                         <color key="badgeColor" systemColor="systemGreenColor"/>
                     </tabBarItem>
@@ -989,7 +989,7 @@
         <!--Music Player-->
         <scene sceneID="vyO-3b-W6T">
             <objects>
-                <viewController title="Music Player" id="jpE-LN-f8d" customClass="MusicPlayerViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MP" title="Music Player" id="jpE-LN-f8d" customClass="MusicPlayerViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GTh-CR-Sly">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1028,14 +1028,18 @@
                                     <action selector="prevSong:" destination="jpE-LN-f8d" eventType="touchUpInside" id="uof-4s-Clz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8s-VW-XkN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8s-VW-XkN">
                                 <rect key="frame" x="0.0" y="474" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frh-y1-sb1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frh-y1-sb1">
                                 <rect key="frame" x="0.0" y="504" width="414" height="21"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES" updatesFrequently="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
