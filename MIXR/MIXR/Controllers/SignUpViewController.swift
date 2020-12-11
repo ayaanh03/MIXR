@@ -128,7 +128,7 @@ class SignUpViewController: UIViewController {
     }
     
     func saveToDB(uid: String, email: String) {
-        let user = ["id": uid, "email": email, "rooms": [DEFAULT_ROOMS]] as [String : Any]
+        let user = ["id": uid, "email": email, "rooms": [DEFAULT_ROOMS], "playlists": [DEFAULT_ROOMS]] as [String : Any]
         refUsers.child(uid).setValue(user)
     }
     /**

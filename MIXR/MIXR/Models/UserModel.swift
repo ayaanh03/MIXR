@@ -12,7 +12,7 @@ class UserModel {
     var uid: String
     var password: String
     var rooms: [RoomModel]
-    
+    var playlists: [RoomModel]
     
     
     init() {
@@ -20,6 +20,7 @@ class UserModel {
         email = ""
         password = ""
         rooms = []
+        playlists = []
     }
     
     // Should be a private method, not to be called by controller

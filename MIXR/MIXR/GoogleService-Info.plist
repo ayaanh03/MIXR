@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>442235509203-i7k6jfmg8rht07ho30ff6n85lcng30p5.apps.googleusercontent.com</string>
+	<string>442235509203-5l1qm9a28lqpm27roif8pn3co7he0nfm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.442235509203-i7k6jfmg8rht07ho30ff6n85lcng30p5</string>
+	<string>com.googleusercontent.apps.442235509203-5l1qm9a28lqpm27roif8pn3co7he0nfm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAm1HWO7oVuE5BnEFfjqbzZ2S-1orNv9WI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>dev.christopherhaas.MIXR</string>
+	<string>dev.junweiyin.MIXR</string>
 	<key>PROJECT_ID</key>
 	<string>mixr-70fa8</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:442235509203:ios:ae25c4a7c90b074de77726</string>
+	<string>1:442235509203:ios:fb4160e64b7fd47ae77726</string>
 	<key>DATABASE_URL</key>
 	<string>https://mixr-70fa8.firebaseio.com</string>
 </dict>

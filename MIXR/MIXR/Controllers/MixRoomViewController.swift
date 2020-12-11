@@ -211,7 +211,10 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             
         }
-        
+        let dbService = DatabaseServiceHelper()
+        dbService.generateProcess(roomCode: roomCode) { (flag) in
+            debugPrint("generate success: ", flag)
+        }
         
         
     }

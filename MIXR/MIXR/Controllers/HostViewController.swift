@@ -50,7 +50,7 @@ class HostViewController: UIViewController {
         
         p = DataSnapshot.value as? NSDictionary ?? nil
       }
-      if p==nil {break}
+      if p == nil {break}
     }
     let user  = Auth.auth().currentUser
     
@@ -67,7 +67,7 @@ class HostViewController: UIViewController {
             "length": length.text ?? "15",
             "host": uid,
             "active" : true,
-            "users": []
+            "users": [uid]
         ] as [String : Any]
         
         ref.child("rooms/\(code)").setValue(newR)

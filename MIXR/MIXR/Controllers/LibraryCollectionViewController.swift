@@ -34,7 +34,7 @@ class LibraryCollectionViewController: UICollectionViewController {
         let dbService = DatabaseServiceHelper()
         dbService.getUserFromDB(uid: uid) { (u) in
 
-            self.libraryViewModel.rooms = u.rooms
+            self.libraryViewModel.rooms = u.playlists
             // self.displayRooms = u.rooms
             debugPrint(self.libraryViewModel.rooms)
             self.collectionView.reloadData()
@@ -109,10 +109,10 @@ class LibraryCollectionViewController: UICollectionViewController {
         cell?.layer.opacity = 0.8
         
         debugPrint(libraryViewModel.rooms[indexPath.row].id)
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
-        newViewController.roomCode = libraryViewModel.rooms[indexPath.row].id
-        self.navigationController!.pushViewController(newViewController, animated: true)
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
+//        newViewController.roomCode = libraryViewModel.rooms[indexPath.row].id
+//        self.navigationController!.pushViewController(newViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
