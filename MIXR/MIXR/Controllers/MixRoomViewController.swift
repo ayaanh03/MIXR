@@ -38,6 +38,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     var sets = [[Track]]()
     var timesRecd = [String:Int]()
     
+    var isgenerated = false
+    
     override func viewDidLoad() {
         self.setupToHideKeyboardOnTapOnView()
         self.headers = [
@@ -135,7 +137,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             
          // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
-         let alert = UIAlertController(title: "Error Retrieving Songs", message: "We were unable to retrieve the information for this room.", preferredStyle: .alert)
+         let alert = UIAlertController(title: "Room closed", message: "The playlist is generated and the room is closed.", preferredStyle: .alert)
          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                switch action.style{
                case .default:
@@ -182,6 +184,17 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func generatePlaylist(_ sender: Any) {
+        if (isgenerated) {
+            let alert = UIAlertController(title: "Generate failed", message: "The playlist is already generated.", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
+            return
+        }
+        
+        isgenerated = true
+        
         print("sortedList is ", self.sortedDict)
         var count = 0
         var recURIString = ""
@@ -400,3 +413,4 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
 }
+

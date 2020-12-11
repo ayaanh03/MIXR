@@ -24,8 +24,17 @@ class HostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupToHideKeyboardOnTapOnView()
+        name.text = ""
+        size.text = ""
+        length.text = ""
+        privacySwitch.isOn = true
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewDidLoad()
     }
   
 
