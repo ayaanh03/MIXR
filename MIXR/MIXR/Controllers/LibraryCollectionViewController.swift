@@ -109,10 +109,11 @@ class LibraryCollectionViewController: UICollectionViewController {
         cell?.layer.opacity = 0.8
         
         debugPrint(libraryViewModel.rooms[indexPath.row].id)
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
-//        newViewController.roomCode = libraryViewModel.rooms[indexPath.row].id
-//        self.navigationController!.pushViewController(newViewController, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PlaylistTableViewController") as! PlaylistTableViewController
+        newViewController.id = libraryViewModel.rooms[indexPath.row].id
+        newViewController.name = libraryViewModel.rooms[indexPath.row].name
+        self.navigationController!.pushViewController(newViewController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
