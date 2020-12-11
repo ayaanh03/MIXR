@@ -66,6 +66,9 @@ class DatabaseServiceHelper {
                     
                     if let index = roomsArray.firstIndex(of: ["id": roomCode, "name": name]) {
                         roomsArray.remove(at: index)
+                        if roomsArray.count == 0{
+                            roomsArray.append(["id": "_", "name": "_"])
+                        }
                     }
                     
                     playlistArray.append(["id": id, "name": name])

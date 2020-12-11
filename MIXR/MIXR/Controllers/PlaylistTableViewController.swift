@@ -6,8 +6,25 @@
 //
 
 import UIKit
+import Alamofire
+import Firebase
 
 class PlaylistTableViewController: UITableViewController {
+    
+    var name = ""
+    var id = ""
+    
+    var songs = [Track]() {
+        didSet{
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+        }
+    }
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var headers: HTTPHeaders = []
+    
+    let refPlaylists: DatabaseReference! = Database.database().reference().child("playlists")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,29 +34,62 @@ class PlaylistTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        self.headers = [
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + appDelegate.accessToken
+        ]
+        refPlaylists.child(id).observeSingleEvent(of: .value, with: {(snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let songIdList = value!["addedSongs"]! as! Array<String>
+            
+            for songId in songIdList {
+                AF.request("https://api.spotify.com/v1/tracks?ids=\(songId)", headers: self.headers).responseData { response in
+                 
+                    guard let data = response.data  else { return }
+                    guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
+                      print("Error: Couldn't decode data into a result")
+                      return
+                    }
+                    
+                    tracks.tracks.forEach{ track in
+                        self.songs.append(track)
+                        if self.songs.count != 0 {
+                            let indexPath = IndexPath(row: self.songs.count-1, section: 0)
+                            self.tableView.insertRows(at: [indexPath], with: .automatic)
+                        }
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        })
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return songs.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-
+        
+        var cell = UITableViewCell()
+        
+        cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
+        cell.textLabel?.text = songs[indexPath.row].name
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
