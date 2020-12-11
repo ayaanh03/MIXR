@@ -98,11 +98,11 @@ class MusicPlayerViewController: UIViewController {
   
   //MARK: Update functions
   private func updateViewWithPlayerState(_ playerState:SPTAppRemotePlayerState) {
-      songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
-      fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
-          self.updateAlbumArtWithImage(image)
-      }
-      updateViewWithRestrictions(playerState.playbackRestrictions)
+    songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
+    fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
+        self.updateAlbumArtWithImage(image)
+    }
+    updateViewWithRestrictions(playerState.playbackRestrictions)
       
     
    

@@ -13,6 +13,11 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let dbService = DatabaseServiceHelper()
+//        dbService.generateProcess(roomCode: "09JQ") { (flag) in
+//            debugPrint(flag)
+//
+//        }
         // Do any additional setup after loading the view.
     }
   
