@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkSpotifyAccess()
 //        let dbService = DatabaseServiceHelper()
 //        dbService.generateProcess(roomCode: "09JQ") { (flag) in
 //            debugPrint(flag)

@@ -141,14 +141,7 @@ class PlaylistTableViewController: UITableViewController {
                      
                   }
               }
-              
-              
-              
-          
-          let dbService = DatabaseServiceHelper()
-          dbService.generateProcess(roomCode: id) { (flag) in
-              debugPrint("generate success: ", flag)
-          }
+        
           
           
       }

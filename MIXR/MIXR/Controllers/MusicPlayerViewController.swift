@@ -23,17 +23,6 @@ class MusicPlayerViewController: UIViewController {
   
   //MARK: From Spotify SDK Example Project (https://github.com/spotify/ios-sdk/tree/master/DemoProjects/NowPlayingView)
   
-  private func presentAlert(title: String, message: String) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-    self.present(alert, animated: true, completion: nil)
-  }
-  
-  private func displayError(_ error: NSError?) {
-    if let error = error {
-      presentAlert(title: "Error", message: error.description)
-    }
-  }
 
   
   private func getPlayerState() {
@@ -45,15 +34,7 @@ class MusicPlayerViewController: UIViewController {
       }
   }
   
-  var defaultCallback: SPTAppRemoteCallback {
-    get {
-      return {[weak self] _, error in
-        if let error = error {
-          self?.displayError(error as NSError)
-        }
-      }
-    }
-  }
+
   
   //Resub function to subscribe to changes
   func resub(){
@@ -117,19 +98,19 @@ class MusicPlayerViewController: UIViewController {
   
   //MARK: Music Player buttons
   @IBAction func nextSong(_ sender: Any){
-    appRemote?.playerAPI?.skip(toNext: defaultCallback)
+    appRemote?.playerAPI?.skip(toNext: self.defaultCallback)
   }
   
   @IBAction func prevSong(_ sender: Any){
-    appRemote?.playerAPI?.skip(toPrevious: defaultCallback)
+    appRemote?.playerAPI?.skip(toPrevious: self.defaultCallback)
   }
   
   private func startPlayback() {
-    appRemote?.playerAPI?.resume(defaultCallback)
+    appRemote?.playerAPI?.resume(self.defaultCallback)
   }
   
   private func pausePlayback() {
-    appRemote?.playerAPI?.pause(defaultCallback)
+    appRemote?.playerAPI?.pause(self.defaultCallback)
   }
   
   func checkconnect() -> Bool{

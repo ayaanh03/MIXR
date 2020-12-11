@@ -86,10 +86,18 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.generateButton.isHidden = false;
                         }
                     }
+                    if let name = room["name"] as? String {
+                        self.title = name
+                    }
+                   
                 }
             })
         }
         
+        
+    }
+    
+    func countMemebers() {
         
     }
     
