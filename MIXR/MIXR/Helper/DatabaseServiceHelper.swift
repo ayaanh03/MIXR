@@ -41,11 +41,11 @@ class DatabaseServiceHelper {
         }
     }
     
-    func generateProcess(roomCode: String, completionHandler: @escaping (Bool) -> Void) {
+    func generateProcess(roomCode: String, songs: [String], completionHandler: @escaping (Bool) -> Void) {
         refRooms.child(roomCode).observeSingleEvent(of: .value, with: {(snapshot) in
             let value = snapshot.value as? NSDictionary
             let name = value!["name"]! as! String
-            let songs = value!["addedSongs"]! as! Array<String>
+            //let songs = value!["addedSongs"]! as! Array<String>
             let users = value!["users"]! as! Array<String>
 //            var addedSongs: Array<String> = []
 //            for s in songs {

@@ -67,6 +67,10 @@ class PlaylistTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
+    }
 
     // MARK: - Table view data source
 

@@ -27,6 +27,10 @@ class HostViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
+    }
   
 
 //  Taken from https://stackoverflow.com/questions/26845307/generate-random-alphanumeric-string-in-swift

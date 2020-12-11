@@ -23,11 +23,11 @@ class LibraryCollectionViewCell: UICollectionViewCell {
 extension UICollectionViewCell {
     
 
-    func configureCell(color: UIColor) {
+    func configureCell() {
         self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
         self.layer.borderColor = UIColor.clear.cgColor
-        self.backgroundColor = color
+        self.backgroundColor = UIColor.systemGreen
         self.layer.masksToBounds = true
 
         self.layer.shadowColor = UIColor.black.cgColor
