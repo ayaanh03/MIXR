@@ -22,6 +22,12 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
+    let group = DispatchGroup()
+    
+    let q1 = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
+    let g1 = DispatchGroup()
+    
     let ref = Database.database().reference()
     var roomCode : String = ""
     var addedSongs = [Track]()
@@ -136,8 +142,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 let indexPath = IndexPath(row: self.addedSongs.count-1, section: 0)
                                 self.addedSongsTableView.insertRows(at: [indexPath], with: .automatic)
                             }
-                            
-                            
                         }
                     }
                 }
@@ -145,6 +149,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             
          // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
+
          let alert = UIAlertController(title: "Room closed", message: "The playlist is generated and the room is closed.", preferredStyle: .alert)
          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                switch action.style{
@@ -168,10 +173,19 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func refreshSongs(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         tempTracks.removeAll()
         //self.addedSongs.removeAll()
         //self.songIDList.removeAll()
         pullSongs()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if (self.addedSongs.count >= 5) {
                 self.getSetsOf5()
@@ -179,12 +193,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.sets = [self.addedSongs]
             }
             self.createDict()
+            self.dismiss(animated: false, completion: nil)
         }
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.createDict()
-        }
-         */
         
     }
     
@@ -192,60 +202,102 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func generatePlaylist(_ sender: Any) {
+
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
         if (isgenerated) {
-            let alert = UIAlertController(title: "Generate failed", message: "The playlist is already generated.", preferredStyle: .alert)
+            self.dismiss(animated: false, completion: nil)
+            let alert2 = UIAlertController(title: "Generate failed", message: "The playlist is already generated.", preferredStyle: .alert)
 
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert2.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
 
-            self.present(alert, animated: true)
+            self.present(alert2, animated: true)
             return
         }
-        
+
         isgenerated = true
+
         
         print("sortedList is ", self.sortedDict)
         var count = 0
+        var toGenerate = 0
+        var recURIString = ""
+        var addedSongs = ""
+        var nme = ""
         var recSongs = [String]()
+
         var p:NSDictionary?
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
         if let a = p {
             if var songs = a["addedSongs"] as? [String] {
-                self.sortedDict.forEach { dict in
-                    for v in dict.1 {
-                        if (count <= 14) {
-                    
-                            recSongs.append(v)
-                            count += 1
+                
+                if let l = a["length"] as? String {
+                    print("l is ", l)
+                    toGenerate = Int(l)! - songs.count
+                }
+
+                addedSongs = ""
+                if (toGenerate >= 0) {
+                    songs.forEach{ songID in
+                        addedSongs += "spotify:track:"+songID + ","
+                    }
+                } else {
+                    var c = 0
+                    for songID in songs {
+                        if (c < toGenerate) {
+                            addedSongs += "spotify:track:"+songID + ","
+                            c += 1
                         } else {
                             break
                         }
+
                     }
                 }
                 
-                songs += recSongs
-
-                self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
+                if let n = a["name"] as? String {
+                    nme = n
+                }
                 
+                if (toGenerate > 0) {
+                    self.sortedDict.forEach{ dict in
+                        for v in dict.1 {
+                            if (count < toGenerate) {
+                                recSongs.append(v)
+                                count += 1
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                }
+                songs += recSongs
+                self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
+                                
                 let dbService = DatabaseServiceHelper()
                 dbService.generateProcess(roomCode: self.roomCode, songs: songs) { (flag) in
                     debugPrint("generate success: ", flag)
                 }
-             
             }
         }})
-        
-        
-            
-        
-        let alert = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
-      
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: false, completion: nil)
+            let alert1 = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
+            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert1, animated: true, completion: nil)
+        }
     }
+        
     
     func getUser(completion: @escaping (User) -> Void) {
         
@@ -275,27 +327,23 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                             
                             let group = [self.addedSongs[i1], self.addedSongs[i2], self.addedSongs[i3], self.addedSongs[i4], self.addedSongs[i5]]
                             self.sets.append(group)
-                        }
-                    }
-                }
-            }
-        }
-    }
+        }}}}}}
 
     func createDict() {
-
-        self.sets.forEach{ set1 in
-            getRecs1(songs: set1)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                
-                print("length is ", self.tempTracks.count)
+        
+        
+        self.group.enter()
+        
+        self.queue.async(group: group) {
+            self.sets.forEach{ set1 in
+                self.getRecs1(songs: set1)
             }
+            self.group.leave()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+        self.group.notify(queue: self.queue) {
+            print("length", self.tempTracks.count)
             self.tempTracks.forEach{ track in
-                
                 if let x = self.timesRecd[track.id] {
                     self.timesRecd[track.id]! += 1
                 } else {
@@ -305,7 +353,11 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             let flipped = Dictionary(grouping: self.timesRecd.keys.sorted(), by: { self.timesRecd[$0]! })
             self.sortedDict = flipped.sorted(by: { $0.0 > $1.0 })
+            self.tempTracks.removeAll()
+            self.sets.removeAll()
         }
+        
+        
     }
     
     func getTrack(tr: String, completion: @escaping (Track) -> Void) {
@@ -323,7 +375,6 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func getRecs1(songs: Array<Track>) {
-        //self.tempTracks.removeAll()
         print("tempTracks is ", self.tempTracks)
         var url = "https://api.spotify.com/v1/recommendations?limit=15&seed_tracks="
         //if songs.count == 0 { return songs }
@@ -331,6 +382,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             url += song.id + "%2C"
         }
         url = String(url.dropLast(3))
+        
+        self.group.enter()
         AF.request(url, headers: self.headers).responseJSON { response in
             guard let data = response.data  else { return }
             guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
@@ -338,37 +391,18 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
               return
             }
             
-            var c = 0
-            tracks.tracks.forEach{ track in
-                self.tempTracks.append(track)
-                c += 1
+            for track in tracks.tracks {
+                if (self.tempTracks.count < self.sets.count*15) {
+                    self.tempTracks.append(track)
+                } else {
+                    break
+                }
             }
-            c = 0
-            print("function length", self.tempTracks.count)
-        }
-    }
- 
-    
-    func getRecommendations(completion: @escaping (Tracks) -> Void) {
-        var url = "https://api.spotify.com/v1/recommendations?limit=15&seed_tracks="
-        if self.addedSongs.count == 0 { return }
-        self.addedSongs.forEach{ song in
-            url += song.id + "%2C"
-        }
-        url = String(url.dropLast(3))
-        AF.request(url, headers: self.headers).responseJSON { response in
-            guard let data = response.data  else { return }
-            guard let tracks = try? JSONDecoder().decode(Tracks.self, from: data) else {
-              print("Error: Couldn't decode data into a result")
-              return
-            }
-            completion(tracks)
+            self.group.leave()
         }
     }
     
 
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddSongTableViewController {
