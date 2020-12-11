@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>dev.christopherhaas.MIXR</string>
+	<string>dev.jchiu22.MIXR</string>
 	<key>PROJECT_ID</key>
 	<string>mixr-70fa8</string>
 	<key>STORAGE_BUCKET</key>
 	<string>mixr-70fa8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:442235509203:ios:d77e7711646bc679e77726</string>
 	<key>DATABASE_URL</key>

@@ -232,19 +232,19 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         var recURIString = ""
         var addedSongs = ""
         var nme = ""
+        var recSongs = [String]()
 
         var p:NSDictionary?
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         p = DataSnapshot.value as? NSDictionary
         if let a = p {
-            if let songs = a["addedSongs"] as? [String] {
+            if var songs = a["addedSongs"] as? [String] {
                 
                 if let l = a["length"] as? String {
                     print("l is ", l)
                     toGenerate = Int(l)! - songs.count
                 }
-                
-                //Get new Song ID's
+
                 addedSongs = ""
                 if (toGenerate >= 0) {
                     songs.forEach{ songID in
@@ -266,64 +266,38 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let n = a["name"] as? String {
                     nme = n
                 }
-            }
-        }})
-        
-        self.getUser { (user) in
-            let parameters : [String : Any] = [
-                "name" : nme,
-                "public" : false
-            ]
-            AF.request("https://api.spotify.com/v1/users/\(user.id)/playlists", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: self.headers).responseJSON { response in
-            
-                guard let data = response.data  else { return }
-                guard let playlist = try? JSONDecoder().decode(Playlist.self, from: data) else {
-                    print("Error: Couldn't decode data into a result")
-                    return
-                }
-                self.sortedDict.forEach { dict in
-                    for v in dict.1 {
-                        print("toGenerate", toGenerate)
-                        if (toGenerate > 0) {
+                
+                if (toGenerate > 0) {
+                    self.sortedDict.forEach{ dict in
+                        for v in dict.1 {
                             if (count < toGenerate) {
-                            
-                                
-                                AF.request("https://api.spotify.com/v1/tracks/"+v, headers: self.headers).responseJSON { response1 in
-                                    guard let data1 = response1.data  else { return }
-                                    guard let track = try? JSONDecoder().decode(Track.self, from: data1) else {
-                                        print("Error: Couldn't decode data into a result")
-                                        return
-                                    }
-                                    print("track is ", track)
-                                    recURIString += track.uri + ","
-                                }
+                                recSongs.append(v)
                                 count += 1
                             } else {
                                 break
                             }
-                        } else {
-                            break
                         }
-                }}
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    recURIString = recURIString + addedSongs
-                    recURIString = String(recURIString.dropLast()).replacingOccurrences(of: ",", with: "%2C").replacingOccurrences(of: ":", with: "%3A")
-                    print("recURIString is ", recURIString)
-                    self.addToPlaylist(uris: recURIString, playlistID: playlist.id)
-                    self.dismiss(animated: false, completion: nil)
-                    let alert1 = UIAlertController(title: "Playlist Created", message: "Playlist Has been created in Spotify app", preferredStyle: .alert)
-                    alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    self.present(alert1, animated: true, completion: nil)
+                    }
                 }
-        }}
-        let dbService = DatabaseServiceHelper()
-        dbService.generateProcess(roomCode: roomCode) { (flag) in
-            debugPrint("generate success: ", flag)
+                songs += recSongs
+                self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
+                                
+                let dbService = DatabaseServiceHelper()
+                dbService.generateProcess(roomCode: self.roomCode, songs: songs) { (flag) in
+                    debugPrint("generate success: ", flag)
+                }
+            }
+        }})
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: false, completion: nil)
+            let alert1 = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
+            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert1, animated: true, completion: nil)
         }
-        
     }
+        
     
     func getUser(completion: @escaping (User) -> Void) {
         
