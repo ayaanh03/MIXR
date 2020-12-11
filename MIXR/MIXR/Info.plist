@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 			<key>CFBundleURLName</key>
-			<string>dev.junweiyin.MIXR</string>
+			<string>dev.christopherhaas.MIXR</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>MIXR</string>

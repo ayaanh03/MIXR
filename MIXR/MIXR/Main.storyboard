@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="InF-nK-e9y">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -951,8 +950,12 @@
                             <outlet property="delegate" destination="Cxm-kt-No2" id="m3Y-V7-aJ6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Open Mixes" id="rAv-UD-k20">
-                        <barButtonItem key="rightBarButtonItem" title="Private Mix" id="fSb-Ft-cGn"/>
+                    <navigationItem key="navigationItem" id="rAv-UD-k20">
+                        <barButtonItem key="rightBarButtonItem" title="Post to Spotify" id="1K4-ui-7ZZ">
+                            <connections>
+                                <action selector="postToSpotifyTapped:" destination="Cxm-kt-No2" id="Pvv-JL-SRy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZl-Pb-yh6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

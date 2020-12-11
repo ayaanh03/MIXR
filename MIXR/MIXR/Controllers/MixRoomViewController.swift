@@ -63,7 +63,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell = UITableViewCell()
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-        cell.textLabel?.text = addedSongs[indexPath.row].name
+        cell.textLabel?.text = addedSongs[indexPath.row].name + " by " + (addedSongs[indexPath.row].artists.first?.name ?? "Unknown")
         return cell
     }
     
