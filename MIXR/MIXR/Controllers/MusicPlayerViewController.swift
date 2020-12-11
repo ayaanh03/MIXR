@@ -107,7 +107,6 @@ class MusicPlayerViewController: UIViewController {
       }
       updateViewWithRestrictions(playerState.playbackRestrictions)
       self.songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
-
   }
   
   

@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5DF1B1C05A81B456EB92B4E3 /* Pods_MIXR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C200D24520B0947BE0D248 /* Pods_MIXR.framework */; };
+		5F042D6A2582D5F1008AAB5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F042D692582D5F1008AAB5D /* GoogleService-Info.plist */; };
+		5F042D6B2582D5F1008AAB5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F042D692582D5F1008AAB5D /* GoogleService-Info.plist */; };
+		5F305D572582E21E0037E19C /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC6D2579B202006D5C2A /* MusicPlayerViewController.swift */; };
 		5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9F8255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5F65A9FC255B3F7800CD275B /* DatabaseServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */; };
 		5FA2E9B9257AAF8C008A9B48 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2E9B8257AAF8C008A9B48 /* LibraryViewModel.swift */; };
 		5FA2E9BE257AAF9F008A9B48 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2E9BD257AAF9F008A9B48 /* LibraryCollectionViewCell.swift */; };
-		5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
-		5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
-		5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */; };
 		5FB4C391255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
 		5FB4C392255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
 		5FB4C393255642C4009C81B9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB4C390255642C4009C81B9 /* UserModel.swift */; };
@@ -34,7 +34,6 @@
 		9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2A2577687E006D5C2A /* PlaylistTableViewController.swift */; };
 		9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC2F257769D6006D5C2A /* LibraryCollectionViewController.swift */; };
 		9F12DC3525776CC2006D5C2A /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC3425776CC2006D5C2A /* AccountViewController.swift */; };
-		9F12DC6E2579B202006D5C2A /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12DC6D2579B202006D5C2A /* MusicPlayerViewController.swift */; };
 		9F33CE09255DBF5A005F8C19 /* ArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE08255DBF5A005F8C19 /* ArrayDifference.swift */; };
 		9F33CE11255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE10255DBF87005F8C19 /* ViewControllerTapOutKeyboard.swift */; };
 		9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33CE16255DC36A005F8C19 /* SpotifyCodables.swift */; };
@@ -73,10 +72,10 @@
 
 /* Begin PBXFileReference section */
 		40C200D24520B0947BE0D248 /* Pods_MIXR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIXR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F042D692582D5F1008AAB5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F65A9E3255B371F00CD275B /* DatabaseServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceHelper.swift; sourceTree = "<group>"; };
 		5FA2E9B8257AAF8C008A9B48 /* LibraryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		5FA2E9BD257AAF9F008A9B48 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
-		5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5FB4C390255642C4009C81B9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5FB4C3B22556599E009C81B9 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		5FB4C3B925578AEC009C81B9 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
@@ -215,11 +214,11 @@
 				5F65A9E2255B36FC00CD275B /* Helper */,
 				5FB4C38F255642A7009C81B9 /* Models */,
 				9F33CE15255DC347005F8C19 /* Codables */,
-				5FB4C38425563AD2009C81B9 /* GoogleService-Info.plist */,
 				9FF901942555887D005121B9 /* AppDelegate.swift */,
 				9F33CE07255DBF41005F8C19 /* Extensions */,
 				9FF901F425558F60005121B9 /* Controllers */,
 				9FF901A025558881005121B9 /* Assets.xcassets */,
+				5F042D692582D5F1008AAB5D /* GoogleService-Info.plist */,
 				9AA30C73257A65DD001F9329 /* Main.storyboard */,
 				9FF901A225558881005121B9 /* LaunchScreen.storyboard */,
 				9FF901A525558881005121B9 /* Info.plist */,
@@ -393,7 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF901A425558881005121B9 /* LaunchScreen.storyboard in Resources */,
-				5FB4C38525563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
+				5F042D6A2582D5F1008AAB5D /* GoogleService-Info.plist in Resources */,
 				9FF901A125558881005121B9 /* Assets.xcassets in Resources */,
 				9AA30C74257A65DD001F9329 /* Main.storyboard in Resources */,
 			);
@@ -403,7 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB4C38625563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
+				5F042D6B2582D5F1008AAB5D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +410,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB4C38725563AD2009C81B9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,11 +473,11 @@
 				9FF901992555887D005121B9 /* HomeViewController.swift in Sources */,
 				5FB4C3B32556599E009C81B9 /* RoomModel.swift in Sources */,
 				5FB4C3BA25578AEC009C81B9 /* SongModel.swift in Sources */,
-				9F12DC6E2579B202006D5C2A /* MusicPlayerViewController.swift in Sources */,
 				9F12DC2B2577687F006D5C2A /* PlaylistTableViewController.swift in Sources */,
 				5F65A9E4255B371F00CD275B /* DatabaseServiceHelper.swift in Sources */,
 				9F12DC30257769D6006D5C2A /* LibraryCollectionViewController.swift in Sources */,
 				9FF90204255596A9005121B9 /* JoinViewController.swift in Sources */,
+				5F305D572582E21E0037E19C /* MusicPlayerViewController.swift in Sources */,
 				9F33CE7D255DCEB6005F8C19 /* SpotifyCodables.swift in Sources */,
 				9FF9019F2555887D005121B9 /* MIXR.xcdatamodeld in Sources */,
 				9F12DC262577676E006D5C2A /* SearchRoomTableViewController.swift in Sources */,
@@ -668,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9AQKYJ7ARM;
+				DEVELOPMENT_TEAM = T88C4BY4N3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIXR",
@@ -680,7 +678,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.christopherhaas.MIXR;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.junweiyin.MIXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MIXR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -695,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9AQKYJ7ARM;
+				DEVELOPMENT_TEAM = T88C4BY4N3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIXR",
@@ -707,7 +705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.christopherhaas.MIXR;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.junweiyin.MIXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MIXR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
