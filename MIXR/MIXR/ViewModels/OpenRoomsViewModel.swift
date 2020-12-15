@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class OpenRoomsViewModel: ObservableObject {
     @Published var rooms = [RoomModel]()
 }
