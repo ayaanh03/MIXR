@@ -92,7 +92,9 @@ class MusicPlayerViewController: UIViewController {
           self.updateAlbumArtWithImage(image)
       }
       updateViewWithRestrictions(playerState.playbackRestrictions)
-      self.songLabel.text = playerState.track.name + " - " + playerState.track.artist.name
+      print("track name is ", playerState.track.name)
+      self.songLabel.text = playerState.track.name
+      //self.artistLabel.text = playerState.track.artist.name
   }
   
   
