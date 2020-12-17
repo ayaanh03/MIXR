@@ -29,6 +29,11 @@ class PlaylistTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = name.capitalized
+        adjustLargeTitleSize()
+        
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -93,8 +98,11 @@ class PlaylistTableViewController: UITableViewController {
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
         cell.textLabel?.text = songs[indexPath.row].name + " by " + (songs[indexPath.row].artists.first?.name ?? "Unknown")
+        cell.textLabel?.textColor = UIColor.white
         return cell
     }
+    
+    
     
     
     @IBAction func postToSpotifyTapped(_ sender: Any) {
