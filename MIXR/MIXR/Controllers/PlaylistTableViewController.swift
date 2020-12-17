@@ -29,6 +29,11 @@ class PlaylistTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = name.capitalized
+        adjustLargeTitleSize()
+        
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -93,8 +98,30 @@ class PlaylistTableViewController: UITableViewController {
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
         cell.textLabel?.text = songs[indexPath.row].name + " by " + (songs[indexPath.row].artists.first?.name ?? "Unknown")
+        cell.textLabel?.textColor = UIColor.white
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
+        cell.layer.opacity = 0.5
+        var songID = songs[indexPath.row].uri
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.appRemote.isConnected{
+            appDelegate.appRemote.playerAPI?.subscribe(toPlayerState: self.defaultCallback)
+            appDelegate.appRemote.playerAPI?.play(songID, asRadio: true, callback: self.defaultCallback)
+        }
+        
+       
+       
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
+        cell.layer.opacity = 1
+    }
+    
+    
     
     
     @IBAction func postToSpotifyTapped(_ sender: Any) {

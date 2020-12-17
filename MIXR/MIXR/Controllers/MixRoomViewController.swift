@@ -15,6 +15,10 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var generateButton: UIButton!
     
+    @IBOutlet weak var roomSize: UILabel!
+    
+    @IBOutlet weak var addSongButton: UIButton!
+    
     @IBOutlet weak var addedSongsTableView: UITableView! {
         didSet{
             addedSongsTableView.delegate = self
@@ -53,13 +57,19 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             "Content-Type": "application/json",
             "Authorization": "Bearer " + appDelegate.accessToken
         ]
+        
+        addSongButton.layer.borderWidth = 1
+        addSongButton.layer.cornerRadius = 5
+        addSongButton.layer.borderColor = UIColor.systemGreen.cgColor
+       
         generateButton.layer.cornerRadius = 5
         generateButton.isHidden = true;
         checkHost()
         pullSongs()
         self.addedSongsTableView.reloadData()
         super.viewDidLoad()
-        codeLabel.text = "ROOM CODE: " + roomCode
+        self.addedSongsTableView.separatorInset = UIEdgeInsets.zero
+        codeLabel.text = roomCode
 
         // Do any additional setup after loading the view.
     }
@@ -78,6 +88,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
         cell.textLabel?.text = addedSongs[indexPath.row].name + " by " + (addedSongs[indexPath.row].artists.first?.name ?? "Unknown")
+        cell.textLabel?.textColor = UIColor.white
+        cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     
@@ -96,6 +108,15 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     if let name = room["name"] as? String {
                         self.title = name
+                        self.adjustLargeTitleSize()
+
+                    }
+                    
+                    if let size = room["size"] as? String {
+                        if let users = room["users"] as? NSArray {
+                            self.roomSize.text = "\(users.count + 1) / \(size)"
+                            
+                        }
                     }
                    
                 }
@@ -147,6 +168,10 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         } else {
+            self.navigationController?.popViewController(animated: true)
+            
+        
+            
             
          // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
 
@@ -154,7 +179,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                switch action.style{
                case .default:
-                     print("default")
+
+                     break
                case .cancel:
                      print("cancel")
                case .destructive:
@@ -293,6 +319,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             let alert1 = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
             alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
                 self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+                self.tabBarController?.selectedIndex = 1
             }))
             self.present(alert1, animated: true, completion: nil)
         }
@@ -420,3 +448,24 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
 }
 
+
+
+
+extension UIViewController {
+  func adjustLargeTitleSize() {
+    guard let title = title, #available(iOS 11.0, *) else { return }
+
+    let maxWidth = UIScreen.main.bounds.size.width - 60
+    var fontSize = UIFont.preferredFont(forTextStyle: .largeTitle).pointSize
+    var width = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)]).width
+
+    while width > maxWidth {
+      fontSize -= 1
+        width = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)]).width
+    }
+
+    navigationController?.navigationBar.largeTitleTextAttributes =
+        [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: fontSize)
+    ]
+  }
+}

@@ -16,15 +16,18 @@ class RoomModel {
     private var timeLength: TimeInterval = -1
     var users: [UserModel] = []
     var songs: [SongModel] = []
+    var limit: Int
     
     private let HOUR_TO_SECONDS: Double = 3600
     private let MINUTE_TO_SECONDS: Double = 60
     
-    init(idIn: String, nameIn: String, isPrivateIn: Bool, usersIn: [UserModel]) {
+    init(idIn: String, nameIn: String, isPrivateIn: Bool, usersIn: [UserModel], limit: Int = 4) {
         id = idIn
         name = nameIn
         isPrivate = isPrivateIn
         users = usersIn
+        self.limit = limit
+        
     }
     
     func getPartySize() -> Int {

@@ -8,15 +8,15 @@
 import UIKit
 
 
-var appRemote: SPTAppRemote? {
-  get {
-    return (UIApplication.shared.delegate as? AppDelegate)?.appRemote
-  }
-}
-
-
 
 class MusicPlayerViewController: UIViewController {
+    
+    var appRemote: SPTAppRemote? {
+      get {
+        return (UIApplication.shared.delegate as? AppDelegate)?.appRemote
+      }
+    }
+
  
   private var playerState: SPTAppRemotePlayerState?
   private var playing: Bool?
@@ -24,29 +24,29 @@ class MusicPlayerViewController: UIViewController {
   //MARK: From Spotify SDK Example Project (https://github.com/spotify/ios-sdk/tree/master/DemoProjects/NowPlayingView)
   
 
-  
-  private func getPlayerState() {
-      appRemote?.playerAPI?.getPlayerState { (result, error) -> Void in
-          guard error == nil else { return }
-
-          let playerState = result as! SPTAppRemotePlayerState
-          self.updateViewWithPlayerState(playerState)
-      }
-  }
+//
+//  private func getPlayerState() {
+//      appRemote?.playerAPI?.getPlayerState { (result, error) -> Void in
+//          guard error == nil else { return }
+//
+//          let playerState = result as! SPTAppRemotePlayerState
+//          self.updateViewWithPlayerState(playerState)
+//      }
+//  }
   
 
   
   //Resub function to subscribe to changes
-  func resub(){
-    
-    appRemote?.playerAPI?.delegate = self
-    appRemote?.playerAPI?.subscribe(toPlayerState: { (result, error) in
-        if let error = error {
-          debugPrint(error.localizedDescription)
-        }
-      })
-    getPlayerState()
-  }
+//  func resub(){
+//
+//    appRemote?.playerAPI?.delegate = self
+//    appRemote?.playerAPI?.subscribe(toPlayerState: { (result, error) in
+//        if let error = error {
+//          debugPrint(error.localizedDescription)
+//        }
+//      })
+//    getPlayerState()
+//  }
   
   
   //MARK: Code for music player
@@ -59,12 +59,28 @@ class MusicPlayerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    
   }
     
     override func viewWillAppear(_ animated: Bool) {
         checkSpotifyAccess()
+        appRemote?.playerAPI?.getPlayerState{(result, error) in
+            if let error = error {
+              debugPrint(error.localizedDescription)
+            } else {
+                if let state = result as? SPTAppRemotePlayerState{
+                    self.updateViewWithPlayerState(state)
+                }
+            }
+          }
+        
     }
-  
+    
+    
+    
+    func updatePlayerState(_ state: SPTAppRemotePlayerState){
+        self.playerState = state
+    }
  
   
   // MARK: Album Art
@@ -86,15 +102,17 @@ class MusicPlayerViewController: UIViewController {
   }
   
   //MARK: Update functions
-  private func updateViewWithPlayerState(_ playerState:SPTAppRemotePlayerState) {
+    func updateViewWithPlayerState(_ playerState:SPTAppRemotePlayerState) {
+        self.playerState = playerState
+        self.playing = !playerState.isPaused
       
       fetchAlbumArtForTrack(playerState.track) { (image) -> Void in
           self.updateAlbumArtWithImage(image)
       }
       updateViewWithRestrictions(playerState.playbackRestrictions)
-      print("track name is ", playerState.track.name)
+      debugPrint("track name is ", playerState.track.name)
       self.songLabel.text = playerState.track.name
-      //self.artistLabel.text = playerState.track.artist.name
+      self.artistLabel.text = playerState.track.artist.name
   }
   
   
@@ -105,13 +123,38 @@ class MusicPlayerViewController: UIViewController {
   
   //MARK: Music Player buttons
   @IBAction func nextSong(_ sender: Any){
-    appRemote?.playerAPI?.skip(toNext: self.defaultCallback)
+
+    appRemote?.playerAPI?.skip(toNext: self.updateViewCallback)
   }
   
   @IBAction func prevSong(_ sender: Any){
-    appRemote?.playerAPI?.skip(toPrevious: self.defaultCallback)
+    appRemote?.playerAPI?.skip(toPrevious: self.updateViewCallback)
+    
   }
   
+    
+    
+    var updateViewCallback: SPTAppRemoteCallback {
+      get {
+        return {[weak self] _, error in
+          if let error = error {
+            self?.displayError(error as NSError)
+          } else {
+            self?.appRemote?.playerAPI?.getPlayerState{(result, error) in
+                if let error = error {
+                  debugPrint(error.localizedDescription)
+                } else {
+                    if let state = result as? SPTAppRemotePlayerState{
+                        self!.updateViewWithPlayerState(state)
+                    }
+                }
+              }
+          }
+        }
+      }
+    }
+    
+    
   private func startPlayback() {
     appRemote?.playerAPI?.resume(self.defaultCallback)
   }
@@ -126,7 +169,7 @@ class MusicPlayerViewController: UIViewController {
           // The Spotify app is not installed, present the user with an App Store page
           print("Spotify not found")
       }
-      resub()
+//      resub()
   }
     else{return true}
     return false
@@ -136,22 +179,25 @@ class MusicPlayerViewController: UIViewController {
   @IBAction func didPressPlayPauseButton(_ sender: Any) {
    
     if  checkconnect() {
+        appRemote?.playerAPI?.getPlayerState{(result, error) in
+            if let error = error {
+              debugPrint(error.localizedDescription)
+            } else {
+                if let state = result as? SPTAppRemotePlayerState{
+                    if state.isPaused {
+                        self.startPlayback()
+                    } else {
+                        self.pausePlayback()
+                    }
+                }
+            }
+          }
       
-    if playerState == nil || playerState!.isPaused {
-        startPlayback()
-    } else {
-        pausePlayback()
-    }
-}
-}
+    
+        }
+  }
 }
 
 // MARK: - SPTAppRemotePlayerStateDelegate
 // Need this for album art and play pause to work without crashing.
-extension MusicPlayerViewController: SPTAppRemotePlayerStateDelegate {
-       func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-           self.playerState = playerState
-           updateViewWithPlayerState(playerState)
-//        print("BIG STATE CHANGE")
-       }
-}
+

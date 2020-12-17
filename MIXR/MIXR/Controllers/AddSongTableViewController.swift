@@ -27,6 +27,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.separatorInset = UIEdgeInsets.zero
         
         searchBar.delegate = self
         
@@ -52,6 +53,8 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
         let artist =  songs[indexPath.row].artists.first?.name
         cell.textLabel?.text = songs[indexPath.row].name + " by " + (artist ?? "")
+        cell.textLabel?.textColor = UIColor.white
+        cell.separatorInset = UIEdgeInsets.zero
         return cell
     }
     

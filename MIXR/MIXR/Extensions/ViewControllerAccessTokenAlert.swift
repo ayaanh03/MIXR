@@ -11,6 +11,7 @@ import Foundation
 extension UIViewController
 {
     
+    
     func presentAlert(title: String, message: String) {
       let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
       alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -35,6 +36,11 @@ extension UIViewController
     
     func checkSpotifyAccess(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        var appRemote: SPTAppRemote? {
+          get {
+            return (UIApplication.shared.delegate as? AppDelegate)?.appRemote
+          }
+        }
         if appDelegate.accessToken == "" {
             let alert = UIAlertController(title: "Spotify is Not Linked" , message: "Please link to your spotify account.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Link", style: .default, handler: { action in
