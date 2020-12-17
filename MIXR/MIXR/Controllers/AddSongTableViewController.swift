@@ -64,6 +64,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }}))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            
             self.addSongToRoom(song)
             self.dismiss(animated: true, completion: nil)
             

@@ -74,7 +74,6 @@ class LibraryCollectionViewController: UICollectionViewController {
 
         if let roomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCell", for: indexPath) as? LibraryCollectionViewCell {
 
-            // roomCell.configure(with: displayRooms[indexPath.row].name)
             roomCell.configure(with: libraryViewModel.rooms[indexPath.row].name)
             cell = roomCell
         }

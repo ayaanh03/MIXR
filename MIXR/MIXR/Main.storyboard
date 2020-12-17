@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f7A-SL-7oJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="373"/>
+                                <rect key="frame" x="0.0" y="48.5" width="414" height="373"/>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VHp-Jq-oVo">
                                     <size key="itemSize" width="128" height="128"/>
@@ -179,13 +179,73 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous Mixes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EW-aw-8aa">
+                                <rect key="frame" x="20" y="8" width="374" height="32.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32.5" id="Rhr-EL-SBc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join a Mix" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rb4-3k-5PM">
+                                <rect key="frame" x="20" y="429.5" width="374" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bf0-cQ-Vtv">
+                                <rect key="frame" x="131" y="523" width="164" height="34"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="164" id="v1B-cw-Mab"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" textContentType="one-time-code"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 Letter Mix Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH3-cv-GZn">
+                                <rect key="frame" x="75" y="491" width="265" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="3bt-AV-67e"/>
+                                    <constraint firstAttribute="width" constant="265" id="DTH-3y-dIu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXo-Qz-3n0">
+                                <rect key="frame" x="192" y="565" width="30" height="30"/>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinPressed:" destination="yWO-qg-wFl" eventType="touchUpInside" id="KFv-XJ-9Qe"/>
+                                    <action selector="pressBWithSender:" destination="5eV-GM-Jx4" eventType="touchUpInside" id="f0e-UE-Iiy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OEZ-yX-ehJ"/>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="f7A-SL-7oJ" firstAttribute="top" secondItem="OEZ-yX-ehJ" secondAttribute="top" id="UsG-1F-frx"/>
+                            <constraint firstItem="bf0-cQ-Vtv" firstAttribute="centerX" secondItem="XXo-Qz-3n0" secondAttribute="centerX" constant="6" id="0YV-Zh-i3P"/>
+                            <constraint firstItem="OEZ-yX-ehJ" firstAttribute="trailing" secondItem="5EW-aw-8aa" secondAttribute="trailing" constant="20" id="Ke3-hB-37r"/>
+                            <constraint firstItem="zH3-cv-GZn" firstAttribute="top" secondItem="rb4-3k-5PM" secondAttribute="bottom" constant="28.5" id="Nmp-Be-gis"/>
+                            <constraint firstItem="5EW-aw-8aa" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" id="NtH-mx-glo"/>
+                            <constraint firstItem="XXo-Qz-3n0" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" id="P4S-ou-Mmd"/>
+                            <constraint firstItem="5EW-aw-8aa" firstAttribute="leading" secondItem="OEZ-yX-ehJ" secondAttribute="leading" constant="20" id="TLa-dr-xeb"/>
+                            <constraint firstItem="rb4-3k-5PM" firstAttribute="leading" secondItem="OEZ-yX-ehJ" secondAttribute="leading" constant="20" id="TXD-rk-wr4"/>
+                            <constraint firstItem="XXo-Qz-3n0" firstAttribute="top" secondItem="bf0-cQ-Vtv" secondAttribute="bottom" constant="8" id="Xg3-cK-ncT"/>
+                            <constraint firstItem="bf0-cQ-Vtv" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" constant="6" id="bOD-za-IbW"/>
                             <constraint firstItem="f7A-SL-7oJ" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" id="ckm-8v-HWa"/>
+                            <constraint firstItem="5EW-aw-8aa" firstAttribute="top" secondItem="OEZ-yX-ehJ" secondAttribute="top" constant="8" id="gY7-2w-d6r"/>
+                            <constraint firstItem="rb4-3k-5PM" firstAttribute="top" secondItem="f7A-SL-7oJ" secondAttribute="bottom" constant="8" id="hIU-0y-dFE"/>
+                            <constraint firstItem="f7A-SL-7oJ" firstAttribute="top" secondItem="5EW-aw-8aa" secondAttribute="bottom" constant="8" id="jjG-hE-lvw"/>
+                            <constraint firstItem="OEZ-yX-ehJ" firstAttribute="trailing" secondItem="rb4-3k-5PM" secondAttribute="trailing" constant="20" id="pxb-hr-6z2"/>
+                            <constraint firstItem="rb4-3k-5PM" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" id="ts7-MB-Yuq"/>
                             <constraint firstItem="f7A-SL-7oJ" firstAttribute="height" secondItem="aqT-lZ-hGL" secondAttribute="height" multiplier="0.461634" id="ufp-88-G0N"/>
+                            <constraint firstItem="zH3-cv-GZn" firstAttribute="centerX" secondItem="OEZ-yX-ehJ" secondAttribute="centerX" id="umf-Qv-tOP"/>
+                            <constraint firstItem="bf0-cQ-Vtv" firstAttribute="top" secondItem="zH3-cv-GZn" secondAttribute="bottom" constant="8" id="wjh-u7-gFO"/>
                             <constraint firstItem="f7A-SL-7oJ" firstAttribute="width" secondItem="aqT-lZ-hGL" secondAttribute="width" id="zig-oy-aGv"/>
                         </constraints>
                     </view>
@@ -199,7 +259,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="codeTextField" destination="bf0-cQ-Vtv" id="q5a-aJ-DXm"/>
                         <outlet property="homeCollectionView" destination="f7A-SL-7oJ" id="E2Y-xL-D22"/>
+                        <outlet property="submitCode" destination="XXo-Qz-3n0" id="huv-zO-m0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAO-Pe-IDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -863,7 +925,7 @@
         <!--Library-->
         <scene sceneID="Eo2-7u-hq1">
             <objects>
-                <collectionViewController id="InF-nK-e9y" customClass="LibraryCollectionViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="LibraryCollectionViewController" id="InF-nK-e9y" customClass="LibraryCollectionViewController" customModule="MIXR" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="a1W-9f-mjw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
