@@ -110,6 +110,14 @@ class PlaylistTableViewController: UITableViewController {
         if appDelegate.appRemote.isConnected{
             appDelegate.appRemote.playerAPI?.subscribe(toPlayerState: self.defaultCallback)
             appDelegate.appRemote.playerAPI?.play(songID, asRadio: true, callback: self.defaultCallback)
+        } else {
+            if appDelegate.appRemote.authorizeAndPlayURI(songID) == false {
+                // The Spotify app is not installed, present the user with an App Store page
+                print("Spotify not found")
+            } else {
+                appDelegate.appRemote.playerAPI?.subscribe(toPlayerState: self.defaultCallback)
+                appDelegate.appRemote.playerAPI?.play(songID, asRadio: true, callback: self.defaultCallback)
+            }
         }
         
        

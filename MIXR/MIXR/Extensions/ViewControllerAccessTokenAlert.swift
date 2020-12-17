@@ -20,7 +20,8 @@ extension UIViewController
     
     func displayError(_ error: NSError?) {
       if let error = error {
-        presentAlert(title: "Error", message: error.description)
+        print(error)
+        presentAlert(title: "We are sorry", message: "We couldn't play that song.")
       }
     }
     
