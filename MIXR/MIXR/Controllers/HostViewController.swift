@@ -72,7 +72,7 @@ class HostViewController: UIViewController {
         let newR = [
             "id": code,
             "name": name.text ?? "Playlist",
-            "isPrivate": privacySwitch.isOn,
+            "isPrivate": !privacySwitch.isOn,
             "size": size.text ?? "1",
             "length": length.text ?? "15",
             "host": uid,

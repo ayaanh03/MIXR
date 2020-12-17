@@ -14,15 +14,18 @@ private let reuseIdentifier = "Cell"
 class LibraryCollectionViewController: UICollectionViewController {
     
     @ObservedObject var libraryViewModel = LibraryViewModel()
-    // @State var displayRooms = [RoomModel(idIn: "1111", nameIn: "test", isPrivateIn: true, usersIn: [])]
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+      
         // Register cell classes
+       
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         let width = (self.view.frame.size.width - 10 * 4) / 3
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -40,11 +43,6 @@ class LibraryCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
         }
         
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         viewDidLoad()
     }
 
@@ -72,24 +70,10 @@ class LibraryCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-//
-//        // Configure the cell
-//        cell.configureCell()
-//        let y = (cell.bounds.size.width/2) - 20
-//        let title = UILabel(frame: CGRect(x: 0, y: y, width: cell.bounds.size.width, height: 40))
-//        title.text = "Text"
-//        title.textAlignment = .center
-//        title.font = UIFont.boldSystemFont(ofSize: 16)
-//        title.textColor = UIColor.white
-//
-//        cell.contentView.addSubview(title)
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCell", for: indexPath)
 
-        // displayRooms = libraryViewModel.rooms
-        var cell = UICollectionViewCell()
         if let roomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCell", for: indexPath) as? LibraryCollectionViewCell {
 
-            // roomCell.configure(with: displayRooms[indexPath.row].name)
             roomCell.configure(with: libraryViewModel.rooms[indexPath.row].name)
             cell = roomCell
         }
@@ -122,21 +106,6 @@ class LibraryCollectionViewController: UICollectionViewController {
         cell?.layer.opacity = 1.0
     }
     
-    
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
 
