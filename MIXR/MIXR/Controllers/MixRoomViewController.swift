@@ -168,6 +168,10 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         } else {
+            self.navigationController?.popViewController(animated: true)
+            
+        
+            
             
          // from https://stackoverflow.com/questions/24022479/how-would-i-create-a-uialertview-in-swift
 
@@ -175,7 +179,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
          alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                switch action.style{
                case .default:
-                     print("default")
+
+                     break
                case .cancel:
                      print("cancel")
                case .destructive:
@@ -314,6 +319,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             let alert1 = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
             alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
                 self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+                self.tabBarController?.selectedIndex = 1
             }))
             self.present(alert1, animated: true, completion: nil)
         }
