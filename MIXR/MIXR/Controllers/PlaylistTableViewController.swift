@@ -102,6 +102,25 @@ class PlaylistTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
+        cell.layer.opacity = 0.5
+        var songID = songs[indexPath.row].uri
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.appRemote.isConnected{
+            appDelegate.appRemote.playerAPI?.subscribe(toPlayerState: self.defaultCallback)
+            appDelegate.appRemote.playerAPI?.play(songID, asRadio: true, callback: self.defaultCallback)
+        }
+        
+       
+       
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
+        cell.layer.opacity = 1
+    }
+    
     
     
     

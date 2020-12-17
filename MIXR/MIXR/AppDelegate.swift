@@ -10,7 +10,12 @@ import CoreData
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate{
+    
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        self.playerViewController.updatePlayerState(playerState)
+    }
+    
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
     
@@ -35,9 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate{
       return appRemote
     }()
   
-//  lazy var appPlayerState: SPTAppRemotePlayerState = {
-//    return appPlayerState
-//  }
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -68,25 +71,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate{
 
     
         func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-//          self.appRemote.playerAPI?.delegate = self
+          self.appRemote.playerAPI?.delegate = self
           appRemote.playerAPI?.pause()
           print("connected")
-//          self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-//              if let error = error {
-//                debugPrint(error.localizedDescription)
-//              }
-//            })
+            self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+                if let error = error {
+                  debugPrint(error.localizedDescription)
+                } else {
+                    if let state = result as? SPTAppRemotePlayerState{
+                        self.playerViewController.updatePlayerState(state)
+                    }
+                }
+              })
+
         // Added function to resubscribe to updates in music player controller
         // Prevent nil error from view not initializing -Ay
-            self.playerViewController.loadViewIfNeeded()
+            
 
-        playerViewController.resub()
+//        playerViewController.resub()
     }
 // Allows calling of MusicPlayerVC function
       var playerViewController: MusicPlayerViewController {
           get {
-              let navController = self.window?.rootViewController?.children[0] as! UINavigationController
-              return navController.topViewController as! MusicPlayerViewController
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let playerController = storyBoard.instantiateViewController(withIdentifier: "MP") as! MusicPlayerViewController
+            return playerController
           }
       }
 
