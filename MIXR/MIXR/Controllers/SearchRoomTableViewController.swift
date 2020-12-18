@@ -44,9 +44,19 @@ class SearchRoomTableViewController: UITableViewController {
                             let id = room["id"] as! String
                             if id != "_" {
                                 let size : String = room["size"] as? String ?? "4"
+                                let userArr = room["users"] as? Array<Dictionary<String,Any>>
+                                let countArray = room["users"] as! NSArray
+                                let count = countArray.count
                                 
                                 
-                                let r = RoomModel(idIn: room["id"] as! String, nameIn: room["name"] as! String, isPrivateIn: false, usersIn: [], limit: Int(size) ?? 4 )
+                                var users = [UserModel]()
+                                
+                                userArr?.forEach{ value in
+                                    let user = UserModel()
+                                    user.uid = value["id"] as! String
+                                    users.append(user)
+                                }
+                                let r = RoomModel(idIn: room["id"] as! String, nameIn: room["name"] as! String, isPrivateIn: false, usersIn: users, limit: Int(size) ?? 4, count: count )
                                 oRooms.append(r)
 
                             }
@@ -90,7 +100,7 @@ class SearchRoomTableViewController: UITableViewController {
         let roomLimit = UILabel(frame: CGRect(x:0 , y: 0, width: 50 , height: cell.bounds.size.height))
         roomLimit.backgroundColor = UIColor.clear
         roomLimit.textColor = UIColor.systemGreen
-        roomLimit.text = "\(roomsViewModel.rooms[indexPath.row].users.count+1) / \(roomsViewModel.rooms[indexPath.row].limit)"
+        roomLimit.text = "\(roomsViewModel.rooms[indexPath.row].count) / \(roomsViewModel.rooms[indexPath.row].limit)"
         roomLimit.font = UIFont.boldSystemFont(ofSize: 16)
         roomLimit.textAlignment = .center
         accessView.addSubview(roomLimit)
@@ -122,7 +132,8 @@ class SearchRoomTableViewController: UITableViewController {
                   if let user  = Auth.auth().currentUser {
                   
                     let uid = user.uid
-                      if !b.contains(uid) {
+                    let roomSize = a["size"] as? Int ?? 1
+                    if !b.contains(uid) && roomSize > b.count {
                           b.append(uid)
                           
                           ref.child("rooms/\(c)/users").setValue(b)
@@ -141,69 +152,39 @@ class SearchRoomTableViewController: UITableViewController {
                   }
                   
               }
-              // add a users array
+              // If no users, make host
               else {
                   if let user  = Auth.auth().currentUser {
                       let uid = user.uid
                       ref.child("rooms/\(c)/users").setValue([uid])
+                      ref.child("rooms/\(c)/host").setValue(uid)
                   }
                   
               }
-              
-              
-              let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-              let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
-              newViewController.roomCode = c
-              self.navigationController!.pushViewController(newViewController, animated: true)
+                
+                let roomSize = a["size"] as? String ?? "1"
+                let size = Int(roomSize) ?? 1
+                if let users = a["users"] as? NSArray {
+                    if size >= users.count {
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MixRoomViewController") as! MixRoomViewController
+                        newViewController.roomCode = c
+                        self.navigationController!.pushViewController(newViewController, animated: true)
+                    } else {
+                        let alert = UIAlertController(title: "Room is Full", message: "Sorry, looks like that room is full.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                            
+                            self.dismiss(animated: false, completion: nil)
+                        
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
         
-        
-    }
+            }
           })
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

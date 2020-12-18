@@ -23,6 +23,8 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var headers: HTTPHeaders = []
     
+    var mixRoom : MixRoomViewController?
+
     var roomCode = ""
     
     override func viewDidLoad() {
@@ -69,7 +71,15 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             
             self.addSongToRoom(song)
-            self.dismiss(animated: true, completion: nil)
+            
+            self.dismiss(animated: true, completion: {
+                if let mixRoom = self.mixRoom {
+                    DispatchQueue.main.async {
+                        mixRoom.pullSongs()
+                    }
+                    
+                }
+            })
             
         }))
         self.present(alert, animated: true, completion: nil)
@@ -77,7 +87,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func addSongToRoom(_ song: Track){
-        var ref = Database.database().reference()
+        let ref = Database.database().reference()
 
         var p:NSDictionary?
 

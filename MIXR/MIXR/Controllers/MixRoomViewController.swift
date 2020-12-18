@@ -19,12 +19,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var addSongButton: UIButton!
     
-    @IBOutlet weak var addedSongsTableView: UITableView! {
-        didSet{
-            addedSongsTableView.delegate = self
-            addedSongsTableView.dataSource = self
-        }
-    }
+    @IBOutlet weak var addedSongsTableView: UITableView!
     
     let queue = DispatchQueue(label: "com.company.app.queue", attributes: .concurrent)
     let group = DispatchGroup()
@@ -51,6 +46,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isgenerated = false
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.setupToHideKeyboardOnTapOnView()
         self.headers = [
             "Accept": "application/json",
@@ -67,13 +63,23 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         checkHost()
         pullSongs()
         self.addedSongsTableView.reloadData()
-        super.viewDidLoad()
+        
         self.addedSongsTableView.separatorInset = UIEdgeInsets.zero
         codeLabel.text = roomCode
 
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        checkSpotifyAccess()
+        
+        addedSongsTableView.delegate = self
+        addedSongsTableView.dataSource = self
+        pullSongs()
+        
+        addedSongsTableView.reloadData()
+        
+        
+    }
     
     
     // MARK: ADDED SONGS TABLE VIEW
@@ -160,8 +166,9 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                         tracks.tracks.forEach{ track in
                             self.addedSongs.append(track)
                             if self.addedSongs.count != 0 {
-                                let indexPath = IndexPath(row: self.addedSongs.count-1, section: 0)
-                                self.addedSongsTableView.insertRows(at: [indexPath], with: .automatic)
+                                DispatchQueue.main.async {
+                                    self.addedSongsTableView.reloadData()
+                                }
                             }
                         }
                     }
@@ -447,16 +454,12 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddSongTableViewController {
             destinationVC.roomCode = roomCode
+            destinationVC.mixRoom = self
            }
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        checkSpotifyAccess()
-        pullSongs()
-        addedSongsTableView.reloadData()
-        
-    }
+    
     
 }
 
