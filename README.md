@@ -9,7 +9,7 @@ MIXR works for iPhones with Spotify installed on the device.
 For the best experience, it is recommended that users are Spotify Premium users.
 
 ### Designed for 67-443 by:
-*Jeffery Chiu*
+*Jeffrey Chiu*
 
  *Chris Haas*
  
