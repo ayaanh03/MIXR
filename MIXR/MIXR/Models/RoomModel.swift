@@ -17,16 +17,18 @@ class RoomModel {
     var users: [UserModel] = []
     var songs: [SongModel] = []
     var limit: Int
+    var count: Int
     
     private let HOUR_TO_SECONDS: Double = 3600
     private let MINUTE_TO_SECONDS: Double = 60
     
-    init(idIn: String, nameIn: String, isPrivateIn: Bool, usersIn: [UserModel], limit: Int = 4) {
+    init(idIn: String, nameIn: String, isPrivateIn: Bool, usersIn: [UserModel], limit: Int = 4, count: Int = 0) {
         id = idIn
         name = nameIn
         isPrivate = isPrivateIn
         users = usersIn
         self.limit = limit
+        self.count = count
         
     }
     
