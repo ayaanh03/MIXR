@@ -114,7 +114,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     if let size = room["size"] as? String {
                         if let users = room["users"] as? NSArray {
-                            self.roomSize.text = "\(users.count + 1) / \(size)"
+                            self.roomSize.text = "\(users.count) / \(size)"
                             
                         }
                     }
@@ -211,7 +211,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         //self.addedSongs.removeAll()
         //self.songIDList.removeAll()
         pullSongs()
-        
+        self.dismiss(animated: false, completion: nil)
+        /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if (self.addedSongs.count >= 5) {
                 self.getSetsOf5()
@@ -220,7 +221,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.createDict()
             self.dismiss(animated: false, completion: nil)
-        }
+        }*/
         
     }
     
@@ -250,71 +251,82 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
 
         isgenerated = true
-
         
-        print("sortedList is ", self.sortedDict)
         var count = 0
         var toGenerate = 0
-        var recURIString = ""
         var addedSongs = ""
-        var nme = ""
         var recSongs = [String]()
 
         var p:NSDictionary?
-        ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
-        p = DataSnapshot.value as? NSDictionary
-        if let a = p {
-            if var songs = a["addedSongs"] as? [String] {
-                
-                if let l = a["length"] as? String {
-                    print("l is ", l)
-                    toGenerate = Int(l)! - songs.count
-                }
-
-                addedSongs = ""
-                if (toGenerate >= 0) {
-                    songs.forEach{ songID in
-                        addedSongs += "spotify:track:"+songID + ","
+        
+        tempTracks.removeAll()
+        pullSongs()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if (self.addedSongs.count >= 5) {
+                self.getSetsOf5()
+            } else {
+                self.sets = [self.addedSongs]
+            }
+            self.createDict()
+        }
+        
+        print("sortedList is ", self.sortedDict)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            p = DataSnapshot.value as? NSDictionary
+            if let a = p {
+                if var songs = a["addedSongs"] as? [String] {
+                    
+                    if let l = a["length"] as? String {
+                        print("l is ", l)
+                        toGenerate = Int(l)! - songs.count
                     }
-                } else {
-                    var c = 0
-                    for songID in songs {
-                        if (c < toGenerate) {
+
+                    addedSongs = ""
+                    if (toGenerate >= 0) {
+                        songs.forEach{ songID in
                             addedSongs += "spotify:track:"+songID + ","
-                            c += 1
-                        } else {
-                            break
                         }
-
-                    }
-                }
-                
-                if let n = a["name"] as? String {
-                    nme = n
-                }
-                
-                if (toGenerate > 0) {
-                    self.sortedDict.forEach{ dict in
-                        for v in dict.1 {
-                            if (count < toGenerate) {
-                                recSongs.append(v)
-                                count += 1
+                    } else {
+                        var c = 0
+                        for songID in songs {
+                            if (c < toGenerate) {
+                                addedSongs += "spotify:track:"+songID + ","
+                                c += 1
                             } else {
                                 break
                             }
+
                         }
                     }
+                    
+                    if (toGenerate > 0) {
+                        self.sortedDict.forEach{ dict in
+                            for v in dict.1 {
+                                if (count < toGenerate) {
+                                    recSongs.append(v)
+                                    count += 1
+                                } else {
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    songs += recSongs
+                    self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
+                                    
+                    let dbService = DatabaseServiceHelper()
+                    dbService.generateProcess(roomCode: self.roomCode, songs: songs) { (flag) in
+                        debugPrint("generate success: ", flag)
+                    }
                 }
-                songs += recSongs
-                self.ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: songs))
-                                
-                let dbService = DatabaseServiceHelper()
-                dbService.generateProcess(roomCode: self.roomCode, songs: songs) { (flag) in
-                    debugPrint("generate success: ", flag)
-                }
-            }
-        }})
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            }})
+            self.dismiss(animated: false, completion: nil)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.dismiss(animated: false, completion: nil)
             let alert1 = UIAlertController(title: "Playlist Has Been Created", message: "You can view the new playlist in your Library.", preferredStyle: .alert)
             alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
