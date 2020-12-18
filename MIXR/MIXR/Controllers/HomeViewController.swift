@@ -124,9 +124,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if indexPath.row == 5 || indexPath.row == libraryViewModel.rooms.count {
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "LibraryCollectionViewController") as! LibraryCollectionViewController
-            self.navigationController!.pushViewController(newViewController, animated: true)
+            self.tabBarController?.selectedIndex = 1
             
         } else{
         

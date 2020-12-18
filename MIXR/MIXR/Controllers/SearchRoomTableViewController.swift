@@ -13,31 +13,23 @@ import FirebaseAuth
 class SearchRoomTableViewController: UITableViewController {
     
     
-    @ObservedObject var roomsViewModel = OpenRoomsViewModel()
-//    var openRooms : [RoomModel] = [] {
-//        didSet{
-//            self.tableView.reloadData()
-//        }
-//    }
+    @ObservedObject var roomsViewModel = OpenRoomsViewModel() 
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupToHideKeyboardOnTapOnView()
         
+        
      
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         checkSpotifyAccess()
-    
+        
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        
         let ref = Database.database().reference()
         
         ref.child("rooms").queryOrdered(byChild: "isPrivate").queryEqual(toValue: false).queryLimited(toFirst: 15).observeSingleEvent(of: .value, with:  {
@@ -51,13 +43,15 @@ class SearchRoomTableViewController: UITableViewController {
                             print(room)
                             let id = room["id"] as! String
                             if id != "_" {
-                                let r = RoomModel(idIn: room["id"] as! String, nameIn: room["name"] as! String, isPrivateIn: false, usersIn: [])
+                                let size : String = room["size"] as? String ?? "4"
+                                
+                                
+                                let r = RoomModel(idIn: room["id"] as! String, nameIn: room["name"] as! String, isPrivateIn: false, usersIn: [], limit: Int(size) ?? 4 )
                                 oRooms.append(r)
 
                             }
                         }
                     }
-                    print(oRooms)
                     self.roomsViewModel.rooms = oRooms
                     self.tableView.reloadData()
                 }
@@ -68,6 +62,7 @@ class SearchRoomTableViewController: UITableViewController {
                     
             }
         })
+        
    
     }
 
@@ -89,12 +84,29 @@ class SearchRoomTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = roomsViewModel.rooms[indexPath.row].name
+        cell.textLabel?.textColor = UIColor.white
+        cell.accessoryType = .none
+        let accessView = UIView(frame: CGRect(x: cell.bounds.size.width - 50 , y: 0, width: 50 , height: cell.bounds.size.height))
+        let roomLimit = UILabel(frame: CGRect(x:0 , y: 0, width: 50 , height: cell.bounds.size.height))
+        roomLimit.backgroundColor = UIColor.clear
+        roomLimit.textColor = UIColor.systemGreen
+        roomLimit.text = "\(roomsViewModel.rooms[indexPath.row].users.count+1) / \(roomsViewModel.rooms[indexPath.row].limit)"
+        roomLimit.font = UIFont.boldSystemFont(ofSize: 16)
+        roomLimit.textAlignment = .center
+        accessView.addSubview(roomLimit)
+        cell.accessoryView = accessView
+        
+        
+        cell.separatorInset = UIEdgeInsets.zero
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let c = roomsViewModel.rooms[indexPath.row].id
+        let cell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath)
+        cell.accessoryView?.backgroundColor
+
         
         let ref = Database.database().reference()
         var p:NSDictionary?
