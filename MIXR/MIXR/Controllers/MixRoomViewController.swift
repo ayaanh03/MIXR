@@ -114,7 +114,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     if let size = room["size"] as? String {
                         if let users = room["users"] as? NSArray {
-                            self.roomSize.text = "\(users.count + 1) / \(size)"
+                            self.roomSize.text = "\(users.count) / \(size)"
                             
                         }
                     }
@@ -211,7 +211,8 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
         //self.addedSongs.removeAll()
         //self.songIDList.removeAll()
         pullSongs()
-        
+        self.dismiss(animated: false, completion: nil)
+        /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if (self.addedSongs.count >= 5) {
                 self.getSetsOf5()
@@ -220,7 +221,7 @@ class MixRoomViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.createDict()
             self.dismiss(animated: false, completion: nil)
-        }
+        }*/
         
     }
     
