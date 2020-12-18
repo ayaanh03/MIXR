@@ -205,7 +205,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert" textContentType="one-time-code"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 4 Letter Mix Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH3-cv-GZn">
-                                <rect key="frame" x="75" y="491" width="265" height="24"/>
+                                <rect key="frame" x="74.5" y="491" width="265" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3bt-AV-67e"/>
                                     <constraint firstAttribute="width" constant="265" id="DTH-3y-dIu"/>

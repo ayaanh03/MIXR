@@ -77,10 +77,7 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
         var ref = Database.database().reference()
 
         var p:NSDictionary?
-        
-      
-           
-          
+
         ref.child("rooms/\(self.roomCode)").observeSingleEvent(of: .value, with: { (DataSnapshot) in
         
             p = DataSnapshot.value as? NSDictionary ?? nil
@@ -92,8 +89,6 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             }
            
             if let room = p {
-
-                
                 
                 var users = [String]()
                 
@@ -102,7 +97,19 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
                     
                 }
 
-                   if users.contains(String(uid)) {
+               if users.contains(String(uid)) {
+                    if let songs = room["addedSongs"] as? NSArray {
+                        if !songs.contains(song.id){
+                            let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
+                            ref.child("rooms/\(self.roomCode)/addedSongs").setValue(updatedSongs)
+                        }
+                    } else {
+                        //Put first song in Room
+                        ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
+                    }
+             } else {
+                if let host = room["host"] as? String {
+                    if host == String(uid) {
                         if let songs = room["addedSongs"] as? NSArray {
                             if !songs.contains(song.id){
                                 let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
@@ -112,22 +119,13 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
                             //Put first song in Room
                             ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
                         }
-                 } else {
-                    if let host = room["host"] as? String {
-                        if host == String(uid) {
-                            if let songs = room["addedSongs"] as? NSArray {
-                                if !songs.contains(song.id){
-                                    let updatedSongs : NSArray = songs.adding(NSString(string: song.id)) as NSArray
-                                    ref.child("rooms/\(self.roomCode)/addedSongs").setValue(updatedSongs)
-                                }
-                            } else {
-                                //Put first song in Room
-                                ref.child("rooms/\(self.roomCode)/addedSongs").setValue(NSArray(object: NSString(string: song.id)))
-                            }
-                            
-                        }
                     }
-                 }
+                }
+             }
+
+                
+                
+                
             
             }  else{
                 let alert = UIAlertController(title: "Unable to Connect to your room" , message: "Please try again later", preferredStyle: .alert)
@@ -138,6 +136,9 @@ class AddSongTableViewController: UITableViewController, UISearchBarDelegate {
             
             }
         })
+        
+        
+
     }
     
     // MARK: Search Bar Config
