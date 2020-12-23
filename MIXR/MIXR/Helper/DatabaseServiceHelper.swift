@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
 
 class DatabaseServiceHelper {
     let refUsers: DatabaseReference! = Database.database().reference().child("users")
